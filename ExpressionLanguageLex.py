@@ -1,6 +1,7 @@
-# -------------------------
-# ExpressionLanguageLex.py
-#----------------------
+# ------------------------- #
+# ExpressionLanguageLex.py  #
+#-------------------------- #
+
 import ply.lex as lex
 
 reservadas = {
@@ -77,9 +78,9 @@ reservadas = {
   'volatile': 'VOLATILE',
   'while': 'WHILE',
 
-  # -------------------------
-  ### Palavras-chave contextuais
-  # -------------------------
+  # ---------------------------- #
+  # Palavras-chave contextuais   #
+  # ---------------------------- #
   'add': 'ADD',
   'and': 'AND',
   'alias': 'ALIAS',
@@ -118,8 +119,12 @@ reservadas = {
   'var': 'VAR',
   'when': 'WHEN',
   'where': 'WHERE',
-  'with': 'WIHT',
+  'with': 'WITH',
   'yield': 'YIELD',
+
+  # ------------------------ #
+  #   Literais Reservadas    #
+  # ------------------------ #
   'null': 'NULL',
   'false': 'FALSE',
   'true': 'TRUE',
@@ -127,19 +132,109 @@ reservadas = {
 }
 
 tokens = [
-  'COMMA', 'SOMA', 'ID', 'NUMBER', 'VEZES', 'POT', 'LPAREN', 'RPAREN', 'IGUAL',
-  'LCHAV', 'RCHAV', 'PV'
+  'COMMA',
+  'SOMA',
+  'SUBTRACAO',
+  'ID',
+  'NUMBERINT',
+  'NUMBERFLOAT',
+  'NUMBERDOUBLE',
+  'NUMBERDECIMAL',
+  'VEZES',
+  'LPAREN',
+  'RPAREN',
+  'IGUAL',
+  'PONTO',
+  'LCHAV',
+  'RCHAV',
+  'PV',
+  'RESTO',
+  'COMMENT',
+  'MAIOR',
+  'MENOR',
+  'MAIOR_IGUAL',
+  'MENOR_IGUAL',
+  'EXOR',
+  'LAND',
+  'INOR',
+  'COMPLEMENTO',
+  'LCAND',
+  'LCOR',
+  'TERNARIO',
+  'ATRIBUICAO',
+  'INCREMENTO',
+  'DECREMENTO',
 ] + list(reservadas.values())
 
 t_IGUAL = r'='
 t_SOMA = r'\+'
+t_SUBTRACAO = r'\-'
 t_VEZES = r'\*'
-t_POT = r'\^'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_COMMA = r','
+t_PONTO = r'\.'
 t_LCHAV = r'{'
 t_RCHAV = r'}'
 t_PV = r';'
+t_RESTO = r'\$'
+t_MAIOR = r'>'
+t_MENOR = r'<'
+t_MAIOR_IGUAL = r'>='
+t_MENOR_IGUAL = r'<='
+t_EXOR = r'\^'
+t_LAND = r'\&'
+t_INOR = r'\|'
+t_COMPLEMENTO = r'\~'
+t_LCAND = r'\&&'
+t_LCOR = r'\|\|'
+t_TERNARIO = r'\?:'
+t_INCREMENTO = '\+\+'
+t_DECREMENTO = '-\-'
 
 
+def t_ID(t):
+  r'[a-zA-Z_][a-zA-Z_0-9]*'
+  t.type = reservadas.get(t.value, 'ID')
+  return t
+
+def t_NUMBERFLOAT(t):
+  r'\d+\.\d+'
+  return t
+
+def t_NUMBERINT(t):
+  r'\d+'
+  t.value = int(t.value)
+  return t
+
+
+def t_STRING(t):
+  r'\"([^\\]|(\\.))*?\"'
+  return t
+
+def t_COMMENT(t):
+  r'(//.*)|(/\*(.|\n)*?\*/)'
+  return t
+
+def t_ATRIBUICAO(t):
+  r'(\+\=)|(\-\=)|(\*\=)|(\/\=)|(\%\=)|(\&\=)|(\^\=)|(\|\=)|(\<<=)|(\>>=)|(\>>>=)'
+  return t
+
+def t_newline(t):
+  r'\n+'
+  t.lexer.lineno += len(t.value)
+
+t_ignore = ' \t'
+
+def t_error(t):
+  print("Illegal character '%s'" % t.value[0])
+  t.lexer.skip(1)
+
+
+lexer = lex.lex()
+# TESTAR OS OPEADORES
+
+lexer.input(" = + - * ( ) , . { } ; $ > < >= <= ^ & | ~ && || ?: ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= 1 1.69 1.75f" + ('"teste"'))
+
+for tok in lexer:
+  print(tok.type, tok.lineno, tok.value, tok.lexpos)
