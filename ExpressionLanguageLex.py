@@ -192,14 +192,25 @@ t_TERNARIO = r'\?:'
 t_INCREMENTO = '\+\+'
 t_DECREMENTO = '-\-'
 
+def t_NUMBERFLOAT(t):
+  r'(\d+\.\d+[fF])'
+  return t
 
+def t_NUMBERDOUBLE(t):
+  r'(\d+\.\d+[dD])'
+  return t
+
+def t_NUMBERDECIMAL(t):
+  r'(\d+\.\d+[mM])'
+  return t
+  
+def t_FLOAT(t):
+  r'\d+\.\d+'
+  return t
+  
 def t_ID(t):
   r'[a-zA-Z_][a-zA-Z_0-9]*'
   t.type = reservadas.get(t.value, 'ID')
-  return t
-
-def t_NUMBERFLOAT(t):
-  r'\d+\.\d+'
   return t
 
 def t_NUMBERINT(t):
@@ -212,19 +223,24 @@ def t_STRING(t):
   r'\"([^\\]|(\\.))*?\"'
   return t
 
+
 def t_COMMENT(t):
   r'(//.*)|(/\*(.|\n)*?\*/)'
   return t
+
 
 def t_ATRIBUICAO(t):
   r'(\+\=)|(\-\=)|(\*\=)|(\/\=)|(\%\=)|(\&\=)|(\^\=)|(\|\=)|(\<<=)|(\>>=)|(\>>>=)'
   return t
 
+
 def t_newline(t):
   r'\n+'
   t.lexer.lineno += len(t.value)
 
+
 t_ignore = ' \t'
+
 
 def t_error(t):
   print("Illegal character '%s'" % t.value[0])
@@ -234,7 +250,9 @@ def t_error(t):
 lexer = lex.lex()
 # TESTAR OS OPEADORES
 
-lexer.input(" = + - * ( ) , . { } ; $ > < >= <= ^ & | ~ && || ?: ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= 1 1.69 1.75f" + ('"teste"'))
+lexer.input(
+  " = + - * ( ) , . { } ; $ > < >= <= ^ & | ~ && || ?: ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= 1 1.90 1.75f 1.75F 1.75d 1.75D 1.85m 1.85M"
+  + ('"teste"') + "//COMMENT1 2 ///COMMENT2 3 /* COMMENT3 */")
 
 for tok in lexer:
-  print(tok.type, tok.lineno, tok.value, tok.lexpos)
+  print(tok.type, tok.lineno, tok.value, tok.lexpos)  ##
