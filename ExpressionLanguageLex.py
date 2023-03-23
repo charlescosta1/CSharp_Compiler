@@ -252,7 +252,7 @@ lexer = lex.lex()
 
 lexer.input(
   " = + - * ( ) , . { } ; $ > < >= <= ^ & | ~ && || ?: ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= 1 1.90 1.75f 1.75F 1.75d 1.75D 1.85m 1.85M"
-  + ('"teste"') + "//COMMENT1 2 ///COMMENT2 3 /* COMMENT3 */")
+  + ('"teste"') + "//COMMENT1\n" + "///COMMENT2\n" + "/*COMMENT3\nvárias linhas?\n?\n?*/")
 
 for tok in lexer:
   print(tok.type, tok.lineno, tok.value, tok.lexpos)  ##
