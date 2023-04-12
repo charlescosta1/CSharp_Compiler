@@ -137,6 +137,7 @@ tokens = [
   'COMMA',
   'SOMA',
   'SUBTRACAO',
+  'DIVISAO',
   'ID',
   'NUMBERINT',
   'NUMBERFLOAT',
@@ -156,6 +157,14 @@ tokens = [
   'MENOR',
   'MAIOR_IGUAL',
   'MENOR_IGUAL',
+  'IGUALDADE',
+  'DIFERENTE',
+  'MENOS_IGUAL',
+  'MAIS_IGUAL',
+  'VEZES_IGUAL',
+  'DIVISAO_IGUAL',
+  'SOBRA_IGUAL',
+  'LAND_IGUAL',
   'EXOR',
   'LAND',
   'INOR',
@@ -169,24 +178,41 @@ tokens = [
   'LINHA', 
   'IDENT',
   'DEDENT',
+  'LSHIFT',
+  'RSHIFT',
+  'NEGACAO',
+  'RCOL',
+  'LCOL'
 ] + list(reservadas.values())
 
 t_IGUAL = r'='
 t_SOMA = r'\+'
 t_SUBTRACAO = r'\-'
 t_VEZES = r'\*'
+t_DIVISAO = r'\/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_COMMA = r','
 t_PONTO = r'\.'
 t_LCHAV = r'{'
 t_RCHAV = r'}'
+t_LCOL = r'\['
+t_RCOL = r'\]'
 t_PV = r';'
-t_RESTO = r'\$'
+t_NEGACAO = r'\!'
+t_RESTO = r'\%'
 t_MAIOR = r'>'
 t_MENOR = r'<'
 t_MAIOR_IGUAL = r'>='
 t_MENOR_IGUAL = r'<='
+t_IGUALDADE = r'=='
+t_DIFERENTE = r'!='
+t_MENOS_IGUAL = r'-='
+t_MAIS_IGUAL = r'\+='
+t_VEZES_IGUAL = r'\*='
+t_DIVISAO_IGUAL = r'/='
+t_SOBRA_IGUAL = r'%='
+t_LAND_IGUAL = r'&='
 t_EXOR = r'\^'
 t_LAND = r'\&'
 t_INOR = r'\|'
@@ -194,8 +220,11 @@ t_COMPLEMENTO = r'\~'
 t_LCAND = r'\&&'
 t_LCOR = r'\|\|'
 t_TERNARIO = r'\?:'
-t_INCREMENTO = '\+\+'
-t_DECREMENTO = '-\-'
+t_INCREMENTO = r'\+\+'
+t_DECREMENTO = r'-\-'
+t_LSHIFT = r'\<<'
+t_RSHIFT = r'\>>'
+
 
 stack = [0]
 states = (
