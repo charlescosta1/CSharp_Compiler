@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from ExpressionLanguageLex import *
-from ExpressionLanguageParser import *
+#from ExpressionLanguageParser import *
 
 precedence = (
   ('left', 'ATRIBUICAO'),
@@ -18,21 +18,13 @@ precedence = (
   ('right', 'INCREMENTO', 'DECREMENTO', 'PRE_FIX', 'NEGACAO', 'COMPLEMENTO'),
   ('left', 'POS_FIX'),
 )
-
-
-def p_pre_fix(p):
-  ''' exp : SOMA exp %prec PRE_FIX
-          | SUBTRACAO exp %prec PRE_FIX
-   '''
-
-
+ 
 def p_program(p):
   '''program : funcdecl 
   | funcdecl program 
   | variable program 
   | variable '''
   pass
-
 
 def p_funcdecl(p):
   '''funcdecl : signature body '''
@@ -63,67 +55,77 @@ def p_stms(p):
 
 
 def p_stm(p):
-  '''stm : exp PV 
-  | WHILE LPAREN exp RPAREN body 
+  '''stm : exp PV
+    | WHILE LPAREN exp RPAREN body 
                   | RETURN exp PV 
                   | FOR LPAREN exp PV exp PV exp RPAREN body 
                   | IF LPAREN exp RPAREN body ELSE body 
                   | IF LPAREN exp RPAREN body
   '''
   pass
-
+  
 
 def p_variable(p):
-  ''' variable : type assign PV '''
+  ''' variable : type assign PV 
+  | stm '''
   pass
-
 
 def p_type(p):
-  '''type : INT 
-  | STRING 
-  | FLOAT 
-  | BOOL '''
+  '''type : INT
+  | STRING
+  | FLOAT
+  | BOOL 
+  '''
   pass
-
 
 def p_exp(p):
   ''' exp : exp SOMA exp 
   | exp SUBTRACAO exp
   | exp VEZES exp 
-                         | exp DIVISAO exp 
-                         | exp MENOR exp 
-                         | exp MAIOR exp 
-                         | exp RESTO exp 
-                         | exp EXOR exp 
-                         | exp MENOR_IGUAL exp 
-                         | exp MAIOR_IGUAL exp 
-                         | exp IGUALDADE exp 
-                         | exp DIFERENTE exp 
-                         | exp LCAND exp 
-                         | exp LCOR exp 
-                         | exp LAND exp 
-                         | exp INOR exp 
-                         | exp COMPLEMENTO exp 
-                         | exp MAIS_IGUAL exp 
-                         | exp VEZES_IGUAL exp 
-                         | exp DIVISAO_IGUAL exp  
-                         | exp SOBRA_IGUAL exp 
-                         | exp LAND_IGUAL exp 
-                         | exp ATRIBUICAO exp
-                         | exp TERNARIO exp 
-                         | NEGACAO exp 
-                         | exp INCREMENTO %prec POS_FIX
-                         | exp DECREMENTO
-                         | INCREMENTO exp %prec PRE_FIX
-                         | DECREMENTO exp 
-                         | exp LSHIFT exp 
-                         | exp RSHIFT exp 
-                         | call 
-                         | assign 
-                         | ID
+  | exp DIVISAO exp 
+  | exp MENOR exp 
+  | exp MAIOR exp
+  | exp RESTO exp 
+  | exp EXOR exp 
+  | exp MENOR_IGUAL exp 
+  | exp MAIOR_IGUAL exp 
+  | exp IGUALDADE exp 
+  | exp DIFERENTE exp 
+  | exp LCAND exp 
+  | exp LCOR exp 
+  | exp LAND exp 
+  | exp INOR exp 
+  | exp COMPLEMENTO exp 
+  | exp MAIS_IGUAL exp 
+  | exp VEZES_IGUAL exp 
+  | exp DIVISAO_IGUAL exp  
+  | exp SOBRA_IGUAL exp 
+  | exp LAND_IGUAL exp 
+  | exp ATRIBUICAO exp
+  | exp TERNARIO exp 
+  | NEGACAO exp 
+  | exp INCREMENTO %prec POS_FIX
+  | exp DECREMENTO
+  | INCREMENTO exp %prec PRE_FIX
+  | DECREMENTO exp 
+  | exp LSHIFT exp 
+  | exp RSHIFT exp
+  | exp IGUAL exp
+  | call 
+  | assign 
+  | ID
+  | ID PONTO call
+  | NUMBERINT
+  | NUMBERFLOAT
+  | NUMBERDECIMAL
+  | NUMBERDOUBLE
+  | NUMBERFLOATALL
+  | TRUE
+  | FALSE
+  | STRING
   '''
   pass
-
+  
 
 def p_call(p):
   ''' call : ID LPAREN params RPAREN 
@@ -141,14 +143,9 @@ def p_assign(p):
   ''' assign : ID IGUAL exp 
       | ID LCOL exp RCOL IGUAL exp 
       | ID LCOL RCOL IGUAL LCHAV params RCHAV exp
+      | ID
   '''
   pass
 
-
-#lexer = lex.lex()
-
-#data2 = '''int x = 4 + 3 * 5;'''
-
-#lexer.input(data2)
-#parser = yacc.yacc()
-#result = parser.parse(debug=False)
+def p_error(p):
+    print("Syntax error in input!")

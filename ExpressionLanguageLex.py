@@ -5,31 +5,31 @@
 import ply.lex as lex
 
 reservadas = {
-  'abstract': 'ABSTRACT',
-  'as': 'AS',
-  'base': 'BASE',
+  #'abstract': 'ABSTRACT',
+  #'as': 'AS',
+  #'base': 'BASE',
   'bool': 'BOOL',
   'break': 'BREAK',
-  'byte': 'BYTE',
+  #'byte': 'BYTE',
   'case': 'CASE',
   'catch': 'CATCH',
   'char': 'CHAR',
-  'checked': 'CHECKED',
-  'unchecked': 'UNCHECKED',
+  #'checked': 'CHECKED',
+  #'unchecked': 'UNCHECKED',
   'class': 'CLASS',
   'const': 'CONST',
-  'continue': 'CONTINUE',
+  #'continue': 'CONTINUE',
   'decimal': 'DECIMAL',
-  'delegate': 'DELEGATE',
+  #'delegate': 'DELEGATE',
   'do': 'DO',
   'double': 'DOUBLE',
   'else': 'ELSE',
   'enum': 'ENUM',
-  'event': 'EVENT',
-  'explicit': 'EXPLICIT',
-  'implicit': 'IMPLICIT',
-  'finally': 'FINALLY',
-  'fixed': 'FIXED',
+  #'event': 'EVENT',
+  #'explicit': 'EXPLICIT',
+  #'implicit': 'IMPLICIT',
+  #'finally': 'FINALLY',
+  #'fixed': 'FIXED',
   'float': 'FLOAT',
   'for': 'FOR',
   'foreach': 'FOREACH',
@@ -38,14 +38,14 @@ reservadas = {
   'in': 'IN',
   'int': 'INT',
   'interface': 'INTERFACE',
-  'internal': 'INTERNAL',
+  #'internal': 'INTERNAL',
   'is': 'IS',
-  'lock': 'LOCK',
+  #'lock': 'LOCK',
   'long': 'LONG',
   'namespace': 'NAMESPACE',
   'new': 'NEW',
   'object': 'OBJECT',
-  'operator': 'OPERATOR',
+  #'operator': 'OPERATOR',
   'out': 'OUT',
   'override': 'OVERRIDE',
   'params': 'PARAMS',
@@ -55,11 +55,11 @@ reservadas = {
   'readonly': 'READONLY',
   'ref': 'REF',
   'return': 'RETURN',
-  'sbyte': 'SBYTE',
-  'sealed': 'SEALED',
+  #'sbyte': 'SBYTE',
+  #'sealed': 'SEALED',
   'short': 'SHORTE',
   'sizeof': 'SIZEOF',
-  'stackalloc': 'STACKALLOC',
+  #'stackalloc': 'STACKALLOC',
   'static': 'STATIC',
   'string': 'STRING',
   'struct': 'STRUCT',
@@ -68,60 +68,60 @@ reservadas = {
   'throw': 'THROW',
   'try': 'TRY',
   'typeof': 'TYPEOF',
-  'uint': 'UNINT',
+  'uint': 'UINT',
   'ulong': 'ULONG',
   'usafe': 'USAFE',
   'ushort': 'USHORT',
-  'using': 'USING',
-  'virtual': 'VIRTUAL',
+  #'using': 'USING',
+  #'virtual': 'VIRTUAL',
   'void': 'VOID',
-  'volatile': 'VOLATILE',
+  #'volatile': 'VOLATILE',
   'while': 'WHILE',
 
   # ---------------------------- #
   # Palavras-chave contextuais   #
   # ---------------------------- #
-  
-  'add': 'ADD',
-  'and': 'AND',
-  'alias': 'ALIAS',
-  'ascending': 'ASCENDING',
-  'args': 'ARGS',
-  'async': 'ASYNC',
-  'await': 'AWAIT',
-  'by': 'BY',
-  'descending': 'DESCENDING',
-  'dynamic': 'DYNAMIC',
+
+  #'add': 'ADD',
+  #'and': 'AND',
+  #'alias': 'ALIAS',
+  #'ascending': 'ASCENDING',
+  #'args': 'ARGS',
+  #'async': 'ASYNC',
+  #'await': 'AWAIT',
+  #'by': 'BY',
+  #'descending': 'DESCENDING',
+  #'dynamic': 'DYNAMIC',
   'equals': 'EQUALS',
-  'from': 'FROM',
-  'get': 'GET',
-  'global': 'GLOBAL',
-  'group': 'GROUP',
-  'init': 'INIT',
-  'into': 'INTO',
-  'join': 'JOIN',
-  'let': 'LET',
-  'managed': 'MANAGED',
-  'unmanaged': 'UNMANAGED',
-  'nameof': 'NAMEOF',
-  'nint': 'NINT',
-  'not': 'NOT',
+  #'from': 'FROM',
+  #'get': 'GET',
+  #'global': 'GLOBAL',
+  #'group': 'GROUP',
+  #'init': 'INIT',
+  #'into': 'INTO',
+  #'join': 'JOIN',
+  #'let': 'LET',
+  #'managed': 'MANAGED',
+  #'unmanaged': 'UNMANAGED',
+  #'nameof': 'NAMEOF',
+  #'nint': 'NINT',
+  #'not': 'NOT',
   'notnull': 'NOTNULL',
-  'nuint': 'NUINT',
-  'on': 'ON',
-  'or': 'OR',
-  'orderby': 'ORDERBY',
-  'partial': 'PARTIAL',
-  'record': 'RECORD',
-  'remove': 'REMOVE',
-  'select': 'SELECT',
-  'set': 'SET',
-  'value': 'VALUE',
-  'var': 'VAR',
-  'when': 'WHEN',
-  'where': 'WHERE',
-  'with': 'WITH',
-  'yield': 'YIELD',
+  #'nuint': 'NUINT',
+  #'on': 'ON',
+  #'or': 'OR',
+  #'orderby': 'ORDERBY',
+  #'partial': 'PARTIAL',
+  #'record': 'RECORD',
+  #'remove': 'REMOVE',
+  #'select': 'SELECT',
+  #'set': 'SET',
+  #'value': 'VALUE',
+  #'var': 'VAR',
+  #'when': 'WHEN',
+  #'where': 'WHERE',
+  #'with': 'WITH',
+  #'yield': 'YIELD',
 
   # ------------------------ #
   #   Literais Reservadas    #
@@ -143,6 +143,7 @@ tokens = [
   'NUMBERFLOAT',
   'NUMBERDOUBLE',
   'NUMBERDECIMAL',
+  'NUMBERFLOATALL',
   'VEZES',
   'LPAREN',
   'RPAREN',
@@ -225,84 +226,13 @@ t_DECREMENTO = r'-\-'
 t_LSHIFT = r'\<<'
 t_RSHIFT = r'\>>'
 
-
-stack = [0]
-states = (
-  ('idstate', 'exclusive'),
-  ('dedstate', 'exclusive'),
-)
 t_LINHA = '[a-zA-Z][a-zA-Z \t]+'
-
-def space_counter(token):
-  spaces = 0
-  for c in token.value:
-    if c == ' ':
-      spaces += 1
-    elif c == '\t':
-      spaces += 8 - (spaces % 8)
-  return spaces
-
-def t_breakline(t):
-  r'\n+'  #recognizes one or more break lines
-  t.lexer.lineno += len(t.value)
-  t.lexer.begin('idstate')
-
-
-def t_idstate_blankline(t):
-  r'([ \t]+)\n'  #recognizes a blank line
-  # print('t_idstate_blankline')
-  pass
-
-def t_idstate_linewithcode(t):
-  '([ \t]+) | ([a-zA-Z])'  #recognizes white spaces and tabs or a letter
-  # print('t_idstate_linewithcode')
-  n_spaces = space_counter(t)
-  t.lexer.begin('INITIAL')
-  if n_spaces < stack[-1]:
-    t.lexer.skip(-len(t.value))
-    stack.pop()
-    t.type = 'DEDENT'
-    t.lexer.begin('dedstate')
-    return t
-  elif n_spaces > stack[-1]:
-    stack.append(n_spaces)
-    t.type = 'IDENT'
-    return t
-  elif n_spaces == 0:
-    t.lexer.skip(-1)
-
-
-def t_dedstate_linewithdedent(t):
-  '([ \t]+) | ([a-zA-Z])'  #recognizes white spaces and tabs or a letter
-  n_spaces = space_counter(t)
-  if n_spaces < stack[-1]:
-    t.lexer.skip(-len(t.value))
-    stack.pop()
-    t.type = 'DEDENT'
-    return t
-  elif n_spaces >= stack[-1]:
-    t.lexer.begin('INITIAL')
-    if n_spaces > stack[-1]:
-      print('Erro de dedentação --->', n_spaces)
-    elif n_spaces == 0:  # If the element starts with a letter
-      t.lexer.skip(-1)
-
 
 def t_error(t):
   print("ERROR in INITIAL state")
   print(t.value)
   t.lexer.skip(1)
-
-
-def t_idstate_error(t):
-  print("ERROR in idstate state")
-  t.lexer.skip(1)
-
-
-def t_dedstate_error(t):
-  print("ERROR in dedstate state")
-  t.lexer.skip(1)
-
+                   
 def t_NUMBERFLOAT(t):
   r'(\d+\.\d+[fF])'
   return t
@@ -314,9 +244,9 @@ def t_NUMBERDOUBLE(t):
 def t_NUMBERDECIMAL(t):
   r'(\d+\.\d+[mM])'
   return t
-  
-def t_FLOAT(t):
-  r'\d+\.\d+'
+
+def t_NUMBERFLOATALL(t):
+  r'(\d+\.\d+)'
   return t
   
 def t_ID(t):
@@ -348,8 +278,8 @@ def t_newline(t):
 t_ignore = ' \t'
 
 #def t_error(t):
-#  print("Illegal character '%s'" % t.value[0])
-#  t.lexer.skip(1)
+  #print("Illegal character '%s'" % t.value[0])
+  #t.lexer.skip(1)
 
 #lexer = lex.lex()
 # TESTAR OS OPEADORES:
