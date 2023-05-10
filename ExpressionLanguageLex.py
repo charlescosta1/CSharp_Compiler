@@ -109,7 +109,7 @@ reservadas = {
   'notnull': 'NOTNULL',
   #'nuint': 'NUINT',
   #'on': 'ON',
-  #'or': 'OR',
+  'or': 'OR',
   #'orderby': 'ORDERBY',
   #'partial': 'PARTIAL',
   #'record': 'RECORD',
@@ -183,7 +183,8 @@ tokens = [
   'RSHIFT',
   'NEGACAO',
   'RCOL',
-  'LCOL'
+  'LCOL',
+  'LITERALSTRING',
 ] + list(reservadas.values())
 
 t_IGUAL = r'='
@@ -259,13 +260,13 @@ def t_NUMBERINT(t):
   t.value = int(t.value)
   return t
 
-def t_STRING(t):
+def t_LITERALSTRING(t):
   r'\"([^\\]|(\\.))*?\"'
   return t
 
 def t_COMMENT(t):
   r'(//.*)|(/\*(.|\n)*?\*/)'
-  return t
+  pass
 
 def t_ATRIBUICAO(t):
   r'(\+\=)|(\-\=)|(\*\=)|(\/\=)|(\%\=)|(\&\=)|(\^\=)|(\|\=)|(\<<=)|(\>>=)|(\>>>=)'
