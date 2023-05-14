@@ -1,0 +1,59 @@
+#precedence = (
+#  ('left', 'ATRIBUICAO'),
+#  ('right', 'TERNARIO'),
+#  ('left', 'LCOR'),
+#  ('left', 'LCAND'),
+#  ('left', 'OR'),
+#  ('left', 'EXOR'),
+#  ('left', 'LAND'),
+#  ('left', 'IGUALDADE', 'DIFERENTE'),
+#  ('left', 'MENOR', 'MAIOR', 'MAIOR_IGUAL', 'MENOR_IGUAL'),
+#  ('left', 'LSHIFT', 'RSHIFT'),
+#  ('left', 'SOMA', 'SUBTRACAO'),
+#  ('left', 'VEZES', 'DIVISAO', 'RESTO'),
+#  ('right', 'INCREMENTO', 'DECREMENTO', 'PRE_FIX', 'NEGACAO', #'COMPLEMENTO'),
+#  ('left', 'POS_FIX'),
+#)
+
+
+#def p_exp10(p):
+#  '''exp10 : exp10 VEZES exp11
+#  | exp10 DIVISAO exp11
+#  | exp11'''
+#  pass
+
+#def p_exp9(p):
+#  '''exp9 : exp9 SOMA exp10
+#  | exp9 SUBTRACAO exp10
+#  | exp10'''
+#  pass
+
+
+
+
+data = '''
+string teste = "teste1";
+int a = 12;
+float b = 1.2f;
+double c = 1.2d;
+decimal d = 1.4m;
+float e = 1.5;
+int x = 2;
+
+public Void Main()
+{
+bool test = true;
+int i = 1;
+
+while (i > 5){
+  if (x > 0){
+    return x;
+  }
+  else{
+    return test;
+  }
+    return i;
+  }
+  ReadKey();
+}
+'''

@@ -5,31 +5,18 @@
 import ply.lex as lex
 
 reservadas = {
-  #'abstract': 'ABSTRACT',
-  #'as': 'AS',
-  #'base': 'BASE',
   'bool': 'BOOL',
   'break': 'BREAK',
-  #'byte': 'BYTE',
   'case': 'CASE',
   'catch': 'CATCH',
   'char': 'CHAR',
-  #'checked': 'CHECKED',
-  #'unchecked': 'UNCHECKED',
   'class': 'CLASS',
   'const': 'CONST',
-  #'continue': 'CONTINUE',
   'decimal': 'DECIMAL',
-  #'delegate': 'DELEGATE',
   'do': 'DO',
   'double': 'DOUBLE',
   'else': 'ELSE',
   'enum': 'ENUM',
-  #'event': 'EVENT',
-  #'explicit': 'EXPLICIT',
-  #'implicit': 'IMPLICIT',
-  #'finally': 'FINALLY',
-  #'fixed': 'FIXED',
   'float': 'FLOAT',
   'for': 'FOR',
   'foreach': 'FOREACH',
@@ -38,14 +25,11 @@ reservadas = {
   'in': 'IN',
   'int': 'INT',
   'interface': 'INTERFACE',
-  #'internal': 'INTERNAL',
   'is': 'IS',
-  #'lock': 'LOCK',
   'long': 'LONG',
   'namespace': 'NAMESPACE',
   'new': 'NEW',
   'object': 'OBJECT',
-  #'operator': 'OPERATOR',
   'out': 'OUT',
   'override': 'OVERRIDE',
   'params': 'PARAMS',
@@ -55,11 +39,8 @@ reservadas = {
   'readonly': 'READONLY',
   'ref': 'REF',
   'return': 'RETURN',
-  #'sbyte': 'SBYTE',
-  #'sealed': 'SEALED',
   'short': 'SHORTE',
   'sizeof': 'SIZEOF',
-  #'stackalloc': 'STACKALLOC',
   'static': 'STATIC',
   'string': 'STRING',
   'struct': 'STRUCT',
@@ -72,61 +53,17 @@ reservadas = {
   'ulong': 'ULONG',
   'usafe': 'USAFE',
   'ushort': 'USHORT',
-  #'using': 'USING',
-  #'virtual': 'VIRTUAL',
   'void': 'VOID',
-  #'volatile': 'VOLATILE',
   'while': 'WHILE',
-
   # ---------------------------- #
   # Palavras-chave contextuais   #
   # ---------------------------- #
-
-  #'add': 'ADD',
-  #'and': 'AND',
-  #'alias': 'ALIAS',
-  #'ascending': 'ASCENDING',
-  #'args': 'ARGS',
-  #'async': 'ASYNC',
-  #'await': 'AWAIT',
-  #'by': 'BY',
-  #'descending': 'DESCENDING',
-  #'dynamic': 'DYNAMIC',
   'equals': 'EQUALS',
-  #'from': 'FROM',
-  #'get': 'GET',
-  #'global': 'GLOBAL',
-  #'group': 'GROUP',
-  #'init': 'INIT',
-  #'into': 'INTO',
-  #'join': 'JOIN',
-  #'let': 'LET',
-  #'managed': 'MANAGED',
-  #'unmanaged': 'UNMANAGED',
-  #'nameof': 'NAMEOF',
-  #'nint': 'NINT',
-  #'not': 'NOT',
   'notnull': 'NOTNULL',
-  #'nuint': 'NUINT',
-  #'on': 'ON',
   'or': 'OR',
-  #'orderby': 'ORDERBY',
-  #'partial': 'PARTIAL',
-  #'record': 'RECORD',
-  #'remove': 'REMOVE',
-  #'select': 'SELECT',
-  #'set': 'SET',
-  #'value': 'VALUE',
-  #'var': 'VAR',
-  #'when': 'WHEN',
-  #'where': 'WHERE',
-  #'with': 'WITH',
-  #'yield': 'YIELD',
-
   # ------------------------ #
   #   Literais Reservadas    #
   # ------------------------ #
-  
   'null': 'NULL',
   'false': 'FALSE',
   'true': 'TRUE',
@@ -176,7 +113,7 @@ tokens = [
   'ATRIBUICAO',
   'INCREMENTO',
   'DECREMENTO',
-  'LINHA', 
+  'LINHA',
   'IDENT',
   'DEDENT',
   'LSHIFT',
@@ -229,86 +166,70 @@ t_RSHIFT = r'\>>'
 
 t_LINHA = '[a-zA-Z][a-zA-Z \t]+'
 
+
 def t_error(t):
   print("ERROR in INITIAL state")
   print(t.value)
   t.lexer.skip(1)
-                   
+
+
 def t_NUMBERFLOAT(t):
   r'(\d+\.\d+[fF])'
   return t
+
 
 def t_NUMBERDOUBLE(t):
   r'(\d+\.\d+[dD])'
   return t
 
+
 def t_NUMBERDECIMAL(t):
   r'(\d+\.\d+[mM])'
   return t
 
+
 def t_NUMBERFLOATALL(t):
   r'(\d+\.\d+)'
   return t
-  
+
+
 def t_ID(t):
   r'[a-zA-Z_][a-zA-Z_0-9]*'
   t.type = reservadas.get(t.value, 'ID')
   return t
+
 
 def t_NUMBERINT(t):
   r'\d+'
   t.value = int(t.value)
   return t
 
+
 def t_LITERALSTRING(t):
   r'\"([^\\]|(\\.))*?\"'
   return t
+
 
 def t_COMMENT(t):
   r'(//.*)|(/\*(.|\n)*?\*/)'
   pass
 
+
 def t_ATRIBUICAO(t):
   r'(\+\=)|(\-\=)|(\*\=)|(\/\=)|(\%\=)|(\&\=)|(\^\=)|(\|\=)|(\<<=)|(\>>=)|(\>>>=)'
   return t
+
 
 def t_newline(t):
   r'\n+'
   t.lexer.lineno += len(t.value)
 
+
 t_ignore = ' \t'
 
-#def t_error(t):
-  #print("Illegal character '%s'" % t.value[0])
-  #t.lexer.skip(1)
-
-#lexer = lex.lex()
+# lexer = lex.lex()
 # TESTAR OS OPEADORES:
 
-#lexer.input(
-#  " = + - * ( ) , . { } ; $ > < >= <= ^ & | ~ && || ?: ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= 1 1.90 1.75f 1.75F 1.75d #1.75D 1.85m 1.85M"
-#  + ('"teste"') + "//COMMENT1\n" + "///COMMENT2\n" + "/*COMMENT3\nvárias linhas?\n?*/")
-#
-#for tok in lexer:
-#  print(tok.type, tok.lineno, tok.value, tok.lexpos)  ##
-
-
-# TESTAR A IDENTAÇÃO:
-
-#lex.lex()
-#programa = """cleardef perm
-#    if len lsurf   
-#                
-#       return lalala land
-#r sapore torf
-#    for i in range len l  
-#             s  lili lost
-#             p perm
-#             for x in pix
-#                append tipo tor
-#    return r
-#"""
-#lex.input(programa)
-#
-#for token in lex.lexer:
-#  print('[', token.type, ',', token.value, ']->', stack)
+# lexer.input(
+#   " = + - * ( ) , . { } ; $ > < >= <= ^ & | ~ && || ?: ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= 1 1.90 1.75f 1.75F 1.75d #1.75D 1.85m 1.85M"
+#   + ('"teste"') + "//COMMENT1\n" + "///COMMENT2\n" + "/*COMMENT3\nvárias linhas?\n?*/")
