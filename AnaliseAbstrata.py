@@ -94,6 +94,7 @@ class Signature(metaclass=ABCMeta):
   def accept(self, visitor):
     pass
 
+
 class SignatureId(Signature):
 
   def __init__(self, modifier, id, sigParams):
@@ -196,8 +197,8 @@ class Stm(metaclass=ABCMeta):
 
 class StmExp(Stm):
 
-  def __init__(self, stm):
-    self.stm = stm
+  def __init__(self, exp1):
+    self.exp1 = exp1
 
   def accept(self, visitor):
     return visitor.visitStmExp(self)
@@ -205,8 +206,7 @@ class StmExp(Stm):
 
 class StmWhile(Stm):
 
-  def __init__(self, type, exp1, body):
-    self.type = type
+  def __init__(self, exp1, body):
     self.exp1 = exp1
     self.body = body
 
@@ -216,8 +216,7 @@ class StmWhile(Stm):
 
 class StmReturn(Stm):
 
-  def __init__(self, stm, exp1):
-    self.stm = stm
+  def __init__(self, exp1):
     self.exp1 = exp1
 
   def accept(self, visitor):
@@ -226,15 +225,23 @@ class StmReturn(Stm):
 
 class StmIfElse(Stm):
 
-  def __init__(self, stm1, exp1, body1, stm2, body2):
-    self.stm1 = stm1
+  def __init__(self, exp1, body1, body2):
     self.exp1 = exp1
     self.body1 = body1
-    self.stm2 = stm2
     self.body2 = body2
 
   def accept(self, visitor):
     return visitor.visitStmIfElse(self)
+
+
+class StmIf(Stm):
+
+  def __init__(self, exp1, body):
+    self.exp1 = exp1
+    self.body = body
+
+  def accept(self, visitor):
+    return visitor.visitStmIf(self)
 
 
 class StmVariable(Stm):

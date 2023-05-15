@@ -83,22 +83,22 @@ def p_stm(p):
 
 def p_stm_while(p):
   '''stm : WHILE LPAREN exp1 RPAREN body '''
-  p[0] = sa.StmWhile(p[1], p[3], p[5])
+  p[0] = sa.StmWhile(p[3], p[5])
 
 
 def p_stm_return(p):
   '''stm : RETURN exp1 PV '''
-  p[0] = sa.StmReturn(p[1], p[2])
+  p[0] = sa.StmReturn(p[2])
 
 
 def p_stm_ifelse(p):
   '''stm : IF LPAREN exp1 RPAREN body ELSE body '''
-  p[0] = sa.StmIfElse(p[1], p[3], p[5], p[6], p[7])
+  p[0] = sa.StmIfElse(p[3], p[5], p[7])
 
 
 def p_stm_if(p):
   '''stm : IF LPAREN exp1 RPAREN body '''
-  p[0] = sa.StmIfElse(p[1], p[3], p[5], None, None)
+  p[0] = sa.StmIfElse(p[3], p[5])
 
 
 def p_stm_variable(p):
