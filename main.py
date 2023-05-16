@@ -1,6 +1,7 @@
 import ply.yacc as yacc
 from ExpressionLanguageLex import *
 from ExpressionLanguageParser import *
+import Visitor as Vis
 
 lexer = lex.lex()
 
@@ -23,6 +24,7 @@ static float num(){
 }
 
 '''
+
 
 data2 = '''
 string teste = "teste1";
@@ -49,8 +51,25 @@ while (i > 5){
   }
   ReadKey();
 }
+
+static float num(){
+ float a = 2.23;
+ return a;
+}
+
+static void test(){
+  for(j=0; j<10; j++){
+    return j;
+  }
+  
+  for(; k<10; k++){
+    return k;
+  }
+}
+
+
 '''
 
-lexer.input(data1)
+lexer.input(data2)
 parser = yacc.yacc()
 result = parser.parse(debug=True)

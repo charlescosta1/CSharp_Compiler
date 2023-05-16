@@ -1,0 +1,4491 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BREAK
+    CASE
+    CATCH
+    CHAR
+    CLASS
+    COMMENT
+    COMPLEMENTO
+    CONST
+    DEDENT
+    DEFAULT
+    DIVISAO_IGUAL
+    DO
+    ENUM
+    EQUALS
+    FOREACH
+    GOTO
+    IDENT
+    IGUALDADE
+    IN
+    INTERFACE
+    IS
+    LAND_IGUAL
+    LINHA
+    LONG
+    LSHIFT
+    MAIS_IGUAL
+    MENOS_IGUAL
+    NAMESPACE
+    NEGACAO
+    NEW
+    NOTNULL
+    NULL
+    OBJECT
+    OUT
+    OVERRIDE
+    PARAMS
+    PONTO
+    PRIVATE
+    PROTECTED
+    READONLY
+    REF
+    RESTO
+    RSHIFT
+    SHORTE
+    SIZEOF
+    SOBRA_IGUAL
+    STRUCT
+    SWITCH
+    TERNARIO
+    THIS
+    THROW
+    TRY
+    TYPEOF
+    UINT
+    ULONG
+    USAFE
+    USHORT
+    VEZES_IGUAL
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> funcdecl
+Rule 2     program -> funcdecl program
+Rule 3     program -> variable program
+Rule 4     program -> variable
+Rule 5     funcdecl -> signature body
+Rule 6     modifier -> PUBLIC
+Rule 7     modifier -> STATIC
+Rule 8     signature -> modifier ID LPAREN sigparams RPAREN
+Rule 9     signature -> modifier ID LPAREN RPAREN
+Rule 10    signature -> modifier type ID LPAREN sigparams RPAREN
+Rule 11    signature -> modifier type ID LPAREN RPAREN
+Rule 12    sigparams -> ID ID
+Rule 13    sigparams -> ID ID COMMA sigparams
+Rule 14    body -> LCHAV stms RCHAV
+Rule 15    body -> LCHAV RCHAV
+Rule 16    stms -> stm
+Rule 17    stms -> stm stms
+Rule 18    stm -> exp1 PV
+Rule 19    stm -> WHILE LPAREN exp1 RPAREN body
+Rule 20    stm -> RETURN exp1 PV
+Rule 21    stm -> IF LPAREN exp1 RPAREN body ELSE body
+Rule 22    stm -> IF LPAREN exp1 RPAREN body
+Rule 23    stm -> variable
+Rule 24    optexp -> exp1
+Rule 25    optexp -> <empty>
+Rule 26    stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body
+Rule 27    variable -> type assign PV
+Rule 28    type -> INT
+Rule 29    type -> STRING
+Rule 30    type -> BOOL
+Rule 31    type -> FLOAT
+Rule 32    type -> DECIMAL
+Rule 33    type -> DOUBLE
+Rule 34    type -> VOID
+Rule 35    exp1 -> exp1 ATRIBUICAO exp2
+Rule 36    exp1 -> exp2
+Rule 37    exp2 -> exp2 LCOR exp3
+Rule 38    exp2 -> exp3
+Rule 39    exp3 -> exp3 LCAND exp4
+Rule 40    exp3 -> exp4
+Rule 41    exp4 -> exp4 OR exp5
+Rule 42    exp4 -> exp5
+Rule 43    exp5 -> exp5 EXOR exp6
+Rule 44    exp5 -> exp6
+Rule 45    exp6 -> exp6 LAND exp7
+Rule 46    exp6 -> exp7
+Rule 47    exp7 -> exp7 IGUAL exp8
+Rule 48    exp7 -> exp7 DIFERENTE exp8
+Rule 49    exp7 -> exp8
+Rule 50    exp8 -> exp8 MENOR exp9
+Rule 51    exp8 -> exp8 MENOR_IGUAL exp9
+Rule 52    exp8 -> exp8 MAIOR exp9
+Rule 53    exp8 -> exp8 MAIOR_IGUAL exp9
+Rule 54    exp8 -> exp9
+Rule 55    exp9 -> exp9 SOMA exp10
+Rule 56    exp9 -> exp10
+Rule 57    exp10 -> exp10 SUBTRACAO exp12
+Rule 58    exp10 -> exp12
+Rule 59    exp12 -> exp12 VEZES exp13
+Rule 60    exp12 -> exp13
+Rule 61    exp13 -> exp13 DIVISAO exp14
+Rule 62    exp13 -> exp14
+Rule 63    exp14 -> exp14 INCREMENTO
+Rule 64    exp14 -> exp14 DECREMENTO
+Rule 65    exp14 -> exp15
+Rule 66    exp15 -> TRUE
+Rule 67    exp15 -> FALSE
+Rule 68    exp15 -> LITERALSTRING
+Rule 69    exp15 -> ID
+Rule 70    exp15 -> call
+Rule 71    exp15 -> NUMBERINT
+Rule 72    exp15 -> NUMBERFLOATALL
+Rule 73    exp15 -> NUMBERFLOAT
+Rule 74    exp15 -> NUMBERDECIMAL
+Rule 75    exp15 -> NUMBERDOUBLE
+Rule 76    exp15 -> LPAREN exp1 RPAREN
+Rule 77    call -> ID LPAREN params RPAREN
+Rule 78    call -> ID LPAREN RPAREN
+Rule 79    params -> exp1 COMMA params
+Rule 80    params -> exp1
+Rule 81    assign -> ID IGUAL exp1
+Rule 82    assign -> ID LCOL exp1 RCOL IGUAL exp1
+Rule 83    assign -> ID LCOL RCOL IGUAL LCHAV params RCHAV exp1
+Rule 84    assign -> ID
+
+Terminals, with rules where they appear
+
+ATRIBUICAO           : 35
+BOOL                 : 30
+BREAK                : 
+CASE                 : 
+CATCH                : 
+CHAR                 : 
+CLASS                : 
+COMMA                : 13 79
+COMMENT              : 
+COMPLEMENTO          : 
+CONST                : 
+DECIMAL              : 32
+DECREMENTO           : 64
+DEDENT               : 
+DEFAULT              : 
+DIFERENTE            : 48
+DIVISAO              : 61
+DIVISAO_IGUAL        : 
+DO                   : 
+DOUBLE               : 33
+ELSE                 : 21
+ENUM                 : 
+EQUALS               : 
+EXOR                 : 43
+FALSE                : 67
+FLOAT                : 31
+FOR                  : 26
+FOREACH              : 
+GOTO                 : 
+ID                   : 8 9 10 11 12 12 13 13 69 77 78 81 82 83 84
+IDENT                : 
+IF                   : 21 22
+IGUAL                : 47 81 82 83
+IGUALDADE            : 
+IN                   : 
+INCREMENTO           : 63
+INT                  : 28
+INTERFACE            : 
+IS                   : 
+LAND                 : 45
+LAND_IGUAL           : 
+LCAND                : 39
+LCHAV                : 14 15 83
+LCOL                 : 82 83
+LCOR                 : 37
+LINHA                : 
+LITERALSTRING        : 68
+LONG                 : 
+LPAREN               : 8 9 10 11 19 21 22 26 76 77 78
+LSHIFT               : 
+MAIOR                : 52
+MAIOR_IGUAL          : 53
+MAIS_IGUAL           : 
+MENOR                : 50
+MENOR_IGUAL          : 51
+MENOS_IGUAL          : 
+NAMESPACE            : 
+NEGACAO              : 
+NEW                  : 
+NOTNULL              : 
+NULL                 : 
+NUMBERDECIMAL        : 74
+NUMBERDOUBLE         : 75
+NUMBERFLOAT          : 73
+NUMBERFLOATALL       : 72
+NUMBERINT            : 71
+OBJECT               : 
+OR                   : 41
+OUT                  : 
+OVERRIDE             : 
+PARAMS               : 
+PONTO                : 
+PRIVATE              : 
+PROTECTED            : 
+PUBLIC               : 6
+PV                   : 18 20 26 26 27
+RCHAV                : 14 15 83
+RCOL                 : 82 83
+READONLY             : 
+REF                  : 
+RESTO                : 
+RETURN               : 20
+RPAREN               : 8 9 10 11 19 21 22 26 76 77 78
+RSHIFT               : 
+SHORTE               : 
+SIZEOF               : 
+SOBRA_IGUAL          : 
+SOMA                 : 55
+STATIC               : 7
+STRING               : 29
+STRUCT               : 
+SUBTRACAO            : 57
+SWITCH               : 
+TERNARIO             : 
+THIS                 : 
+THROW                : 
+TRUE                 : 66
+TRY                  : 
+TYPEOF               : 
+UINT                 : 
+ULONG                : 
+USAFE                : 
+USHORT               : 
+VEZES                : 59
+VEZES_IGUAL          : 
+VOID                 : 34
+WHILE                : 19
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign               : 27
+body                 : 5 19 21 21 22 26
+call                 : 70
+exp1                 : 18 19 20 21 22 24 35 76 79 80 81 82 82 83
+exp10                : 55 56 57
+exp12                : 57 58 59
+exp13                : 59 60 61
+exp14                : 61 62 63 64
+exp15                : 65
+exp2                 : 35 36 37
+exp3                 : 37 38 39
+exp4                 : 39 40 41
+exp5                 : 41 42 43
+exp6                 : 43 44 45
+exp7                 : 45 46 47 48
+exp8                 : 47 48 49 50 51 52 53
+exp9                 : 50 51 52 53 54 55
+funcdecl             : 1 2
+modifier             : 8 9 10 11
+optexp               : 26 26 26
+params               : 77 79 83
+program              : 2 3 0
+signature            : 5
+sigparams            : 8 10 13
+stm                  : 16 17
+stms                 : 14 17
+type                 : 10 11 27
+variable             : 3 4 23
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . funcdecl
+    (2) program -> . funcdecl program
+    (3) program -> . variable program
+    (4) program -> . variable
+    (5) funcdecl -> . signature body
+    (27) variable -> . type assign PV
+    (8) signature -> . modifier ID LPAREN sigparams RPAREN
+    (9) signature -> . modifier ID LPAREN RPAREN
+    (10) signature -> . modifier type ID LPAREN sigparams RPAREN
+    (11) signature -> . modifier type ID LPAREN RPAREN
+    (28) type -> . INT
+    (29) type -> . STRING
+    (30) type -> . BOOL
+    (31) type -> . FLOAT
+    (32) type -> . DECIMAL
+    (33) type -> . DOUBLE
+    (34) type -> . VOID
+    (6) modifier -> . PUBLIC
+    (7) modifier -> . STATIC
+
+    INT             shift and go to state 7
+    STRING          shift and go to state 8
+    BOOL            shift and go to state 9
+    FLOAT           shift and go to state 10
+    DECIMAL         shift and go to state 11
+    DOUBLE          shift and go to state 12
+    VOID            shift and go to state 13
+    PUBLIC          shift and go to state 14
+    STATIC          shift and go to state 15
+
+    program                        shift and go to state 1
+    funcdecl                       shift and go to state 2
+    variable                       shift and go to state 3
+    signature                      shift and go to state 4
+    type                           shift and go to state 5
+    modifier                       shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> funcdecl .
+    (2) program -> funcdecl . program
+    (1) program -> . funcdecl
+    (2) program -> . funcdecl program
+    (3) program -> . variable program
+    (4) program -> . variable
+    (5) funcdecl -> . signature body
+    (27) variable -> . type assign PV
+    (8) signature -> . modifier ID LPAREN sigparams RPAREN
+    (9) signature -> . modifier ID LPAREN RPAREN
+    (10) signature -> . modifier type ID LPAREN sigparams RPAREN
+    (11) signature -> . modifier type ID LPAREN RPAREN
+    (28) type -> . INT
+    (29) type -> . STRING
+    (30) type -> . BOOL
+    (31) type -> . FLOAT
+    (32) type -> . DECIMAL
+    (33) type -> . DOUBLE
+    (34) type -> . VOID
+    (6) modifier -> . PUBLIC
+    (7) modifier -> . STATIC
+
+    $end            reduce using rule 1 (program -> funcdecl .)
+    INT             shift and go to state 7
+    STRING          shift and go to state 8
+    BOOL            shift and go to state 9
+    FLOAT           shift and go to state 10
+    DECIMAL         shift and go to state 11
+    DOUBLE          shift and go to state 12
+    VOID            shift and go to state 13
+    PUBLIC          shift and go to state 14
+    STATIC          shift and go to state 15
+
+    funcdecl                       shift and go to state 2
+    program                        shift and go to state 16
+    variable                       shift and go to state 3
+    signature                      shift and go to state 4
+    type                           shift and go to state 5
+    modifier                       shift and go to state 6
+
+state 3
+
+    (3) program -> variable . program
+    (4) program -> variable .
+    (1) program -> . funcdecl
+    (2) program -> . funcdecl program
+    (3) program -> . variable program
+    (4) program -> . variable
+    (5) funcdecl -> . signature body
+    (27) variable -> . type assign PV
+    (8) signature -> . modifier ID LPAREN sigparams RPAREN
+    (9) signature -> . modifier ID LPAREN RPAREN
+    (10) signature -> . modifier type ID LPAREN sigparams RPAREN
+    (11) signature -> . modifier type ID LPAREN RPAREN
+    (28) type -> . INT
+    (29) type -> . STRING
+    (30) type -> . BOOL
+    (31) type -> . FLOAT
+    (32) type -> . DECIMAL
+    (33) type -> . DOUBLE
+    (34) type -> . VOID
+    (6) modifier -> . PUBLIC
+    (7) modifier -> . STATIC
+
+    $end            reduce using rule 4 (program -> variable .)
+    INT             shift and go to state 7
+    STRING          shift and go to state 8
+    BOOL            shift and go to state 9
+    FLOAT           shift and go to state 10
+    DECIMAL         shift and go to state 11
+    DOUBLE          shift and go to state 12
+    VOID            shift and go to state 13
+    PUBLIC          shift and go to state 14
+    STATIC          shift and go to state 15
+
+    variable                       shift and go to state 3
+    program                        shift and go to state 17
+    funcdecl                       shift and go to state 2
+    signature                      shift and go to state 4
+    type                           shift and go to state 5
+    modifier                       shift and go to state 6
+
+state 4
+
+    (5) funcdecl -> signature . body
+    (14) body -> . LCHAV stms RCHAV
+    (15) body -> . LCHAV RCHAV
+
+    LCHAV           shift and go to state 19
+
+    body                           shift and go to state 18
+
+state 5
+
+    (27) variable -> type . assign PV
+    (81) assign -> . ID IGUAL exp1
+    (82) assign -> . ID LCOL exp1 RCOL IGUAL exp1
+    (83) assign -> . ID LCOL RCOL IGUAL LCHAV params RCHAV exp1
+    (84) assign -> . ID
+
+    ID              shift and go to state 21
+
+    assign                         shift and go to state 20
+
+state 6
+
+    (8) signature -> modifier . ID LPAREN sigparams RPAREN
+    (9) signature -> modifier . ID LPAREN RPAREN
+    (10) signature -> modifier . type ID LPAREN sigparams RPAREN
+    (11) signature -> modifier . type ID LPAREN RPAREN
+    (28) type -> . INT
+    (29) type -> . STRING
+    (30) type -> . BOOL
+    (31) type -> . FLOAT
+    (32) type -> . DECIMAL
+    (33) type -> . DOUBLE
+    (34) type -> . VOID
+
+    ID              shift and go to state 22
+    INT             shift and go to state 7
+    STRING          shift and go to state 8
+    BOOL            shift and go to state 9
+    FLOAT           shift and go to state 10
+    DECIMAL         shift and go to state 11
+    DOUBLE          shift and go to state 12
+    VOID            shift and go to state 13
+
+    type                           shift and go to state 23
+
+state 7
+
+    (28) type -> INT .
+
+    ID              reduce using rule 28 (type -> INT .)
+
+
+state 8
+
+    (29) type -> STRING .
+
+    ID              reduce using rule 29 (type -> STRING .)
+
+
+state 9
+
+    (30) type -> BOOL .
+
+    ID              reduce using rule 30 (type -> BOOL .)
+
+
+state 10
+
+    (31) type -> FLOAT .
+
+    ID              reduce using rule 31 (type -> FLOAT .)
+
+
+state 11
+
+    (32) type -> DECIMAL .
+
+    ID              reduce using rule 32 (type -> DECIMAL .)
+
+
+state 12
+
+    (33) type -> DOUBLE .
+
+    ID              reduce using rule 33 (type -> DOUBLE .)
+
+
+state 13
+
+    (34) type -> VOID .
+
+    ID              reduce using rule 34 (type -> VOID .)
+
+
+state 14
+
+    (6) modifier -> PUBLIC .
+
+    ID              reduce using rule 6 (modifier -> PUBLIC .)
+    INT             reduce using rule 6 (modifier -> PUBLIC .)
+    STRING          reduce using rule 6 (modifier -> PUBLIC .)
+    BOOL            reduce using rule 6 (modifier -> PUBLIC .)
+    FLOAT           reduce using rule 6 (modifier -> PUBLIC .)
+    DECIMAL         reduce using rule 6 (modifier -> PUBLIC .)
+    DOUBLE          reduce using rule 6 (modifier -> PUBLIC .)
+    VOID            reduce using rule 6 (modifier -> PUBLIC .)
+
+
+state 15
+
+    (7) modifier -> STATIC .
+
+    ID              reduce using rule 7 (modifier -> STATIC .)
+    INT             reduce using rule 7 (modifier -> STATIC .)
+    STRING          reduce using rule 7 (modifier -> STATIC .)
+    BOOL            reduce using rule 7 (modifier -> STATIC .)
+    FLOAT           reduce using rule 7 (modifier -> STATIC .)
+    DECIMAL         reduce using rule 7 (modifier -> STATIC .)
+    DOUBLE          reduce using rule 7 (modifier -> STATIC .)
+    VOID            reduce using rule 7 (modifier -> STATIC .)
+
+
+state 16
+
+    (2) program -> funcdecl program .
+
+    $end            reduce using rule 2 (program -> funcdecl program .)
+
+
+state 17
+
+    (3) program -> variable program .
+
+    $end            reduce using rule 3 (program -> variable program .)
+
+
+state 18
+
+    (5) funcdecl -> signature body .
+
+    INT             reduce using rule 5 (funcdecl -> signature body .)
+    STRING          reduce using rule 5 (funcdecl -> signature body .)
+    BOOL            reduce using rule 5 (funcdecl -> signature body .)
+    FLOAT           reduce using rule 5 (funcdecl -> signature body .)
+    DECIMAL         reduce using rule 5 (funcdecl -> signature body .)
+    DOUBLE          reduce using rule 5 (funcdecl -> signature body .)
+    VOID            reduce using rule 5 (funcdecl -> signature body .)
+    PUBLIC          reduce using rule 5 (funcdecl -> signature body .)
+    STATIC          reduce using rule 5 (funcdecl -> signature body .)
+    $end            reduce using rule 5 (funcdecl -> signature body .)
+
+
+state 19
+
+    (14) body -> LCHAV . stms RCHAV
+    (15) body -> LCHAV . RCHAV
+    (16) stms -> . stm
+    (17) stms -> . stm stms
+    (18) stm -> . exp1 PV
+    (19) stm -> . WHILE LPAREN exp1 RPAREN body
+    (20) stm -> . RETURN exp1 PV
+    (21) stm -> . IF LPAREN exp1 RPAREN body ELSE body
+    (22) stm -> . IF LPAREN exp1 RPAREN body
+    (23) stm -> . variable
+    (26) stm -> . FOR LPAREN optexp PV optexp PV optexp RPAREN body
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (27) variable -> . type assign PV
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (28) type -> . INT
+    (29) type -> . STRING
+    (30) type -> . BOOL
+    (31) type -> . FLOAT
+    (32) type -> . DECIMAL
+    (33) type -> . DOUBLE
+    (34) type -> . VOID
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    RCHAV           shift and go to state 25
+    WHILE           shift and go to state 28
+    RETURN          shift and go to state 30
+    IF              shift and go to state 31
+    FOR             shift and go to state 33
+    INT             shift and go to state 7
+    STRING          shift and go to state 8
+    BOOL            shift and go to state 9
+    FLOAT           shift and go to state 10
+    DECIMAL         shift and go to state 11
+    DOUBLE          shift and go to state 12
+    VOID            shift and go to state 13
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    stms                           shift and go to state 24
+    stm                            shift and go to state 26
+    exp1                           shift and go to state 27
+    variable                       shift and go to state 32
+    exp2                           shift and go to state 34
+    type                           shift and go to state 5
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 20
+
+    (27) variable -> type assign . PV
+
+    PV              shift and go to state 57
+
+
+state 21
+
+    (81) assign -> ID . IGUAL exp1
+    (82) assign -> ID . LCOL exp1 RCOL IGUAL exp1
+    (83) assign -> ID . LCOL RCOL IGUAL LCHAV params RCHAV exp1
+    (84) assign -> ID .
+
+    IGUAL           shift and go to state 58
+    LCOL            shift and go to state 59
+    PV              reduce using rule 84 (assign -> ID .)
+
+
+state 22
+
+    (8) signature -> modifier ID . LPAREN sigparams RPAREN
+    (9) signature -> modifier ID . LPAREN RPAREN
+
+    LPAREN          shift and go to state 60
+
+
+state 23
+
+    (10) signature -> modifier type . ID LPAREN sigparams RPAREN
+    (11) signature -> modifier type . ID LPAREN RPAREN
+
+    ID              shift and go to state 61
+
+
+state 24
+
+    (14) body -> LCHAV stms . RCHAV
+
+    RCHAV           shift and go to state 62
+
+
+state 25
+
+    (15) body -> LCHAV RCHAV .
+
+    INT             reduce using rule 15 (body -> LCHAV RCHAV .)
+    STRING          reduce using rule 15 (body -> LCHAV RCHAV .)
+    BOOL            reduce using rule 15 (body -> LCHAV RCHAV .)
+    FLOAT           reduce using rule 15 (body -> LCHAV RCHAV .)
+    DECIMAL         reduce using rule 15 (body -> LCHAV RCHAV .)
+    DOUBLE          reduce using rule 15 (body -> LCHAV RCHAV .)
+    VOID            reduce using rule 15 (body -> LCHAV RCHAV .)
+    PUBLIC          reduce using rule 15 (body -> LCHAV RCHAV .)
+    STATIC          reduce using rule 15 (body -> LCHAV RCHAV .)
+    $end            reduce using rule 15 (body -> LCHAV RCHAV .)
+    WHILE           reduce using rule 15 (body -> LCHAV RCHAV .)
+    RETURN          reduce using rule 15 (body -> LCHAV RCHAV .)
+    IF              reduce using rule 15 (body -> LCHAV RCHAV .)
+    FOR             reduce using rule 15 (body -> LCHAV RCHAV .)
+    TRUE            reduce using rule 15 (body -> LCHAV RCHAV .)
+    FALSE           reduce using rule 15 (body -> LCHAV RCHAV .)
+    LITERALSTRING   reduce using rule 15 (body -> LCHAV RCHAV .)
+    ID              reduce using rule 15 (body -> LCHAV RCHAV .)
+    NUMBERINT       reduce using rule 15 (body -> LCHAV RCHAV .)
+    NUMBERFLOATALL  reduce using rule 15 (body -> LCHAV RCHAV .)
+    NUMBERFLOAT     reduce using rule 15 (body -> LCHAV RCHAV .)
+    NUMBERDECIMAL   reduce using rule 15 (body -> LCHAV RCHAV .)
+    NUMBERDOUBLE    reduce using rule 15 (body -> LCHAV RCHAV .)
+    LPAREN          reduce using rule 15 (body -> LCHAV RCHAV .)
+    RCHAV           reduce using rule 15 (body -> LCHAV RCHAV .)
+    ELSE            reduce using rule 15 (body -> LCHAV RCHAV .)
+
+
+state 26
+
+    (16) stms -> stm .
+    (17) stms -> stm . stms
+    (16) stms -> . stm
+    (17) stms -> . stm stms
+    (18) stm -> . exp1 PV
+    (19) stm -> . WHILE LPAREN exp1 RPAREN body
+    (20) stm -> . RETURN exp1 PV
+    (21) stm -> . IF LPAREN exp1 RPAREN body ELSE body
+    (22) stm -> . IF LPAREN exp1 RPAREN body
+    (23) stm -> . variable
+    (26) stm -> . FOR LPAREN optexp PV optexp PV optexp RPAREN body
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (27) variable -> . type assign PV
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (28) type -> . INT
+    (29) type -> . STRING
+    (30) type -> . BOOL
+    (31) type -> . FLOAT
+    (32) type -> . DECIMAL
+    (33) type -> . DOUBLE
+    (34) type -> . VOID
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    RCHAV           reduce using rule 16 (stms -> stm .)
+    WHILE           shift and go to state 28
+    RETURN          shift and go to state 30
+    IF              shift and go to state 31
+    FOR             shift and go to state 33
+    INT             shift and go to state 7
+    STRING          shift and go to state 8
+    BOOL            shift and go to state 9
+    FLOAT           shift and go to state 10
+    DECIMAL         shift and go to state 11
+    DOUBLE          shift and go to state 12
+    VOID            shift and go to state 13
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    stm                            shift and go to state 26
+    stms                           shift and go to state 63
+    exp1                           shift and go to state 27
+    variable                       shift and go to state 32
+    exp2                           shift and go to state 34
+    type                           shift and go to state 5
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 27
+
+    (18) stm -> exp1 . PV
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    PV              shift and go to state 64
+    ATRIBUICAO      shift and go to state 65
+
+
+state 28
+
+    (19) stm -> WHILE . LPAREN exp1 RPAREN body
+
+    LPAREN          shift and go to state 66
+
+
+state 29
+
+    (76) exp15 -> LPAREN . exp1 RPAREN
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 67
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 30
+
+    (20) stm -> RETURN . exp1 PV
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 68
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 31
+
+    (21) stm -> IF . LPAREN exp1 RPAREN body ELSE body
+    (22) stm -> IF . LPAREN exp1 RPAREN body
+
+    LPAREN          shift and go to state 69
+
+
+state 32
+
+    (23) stm -> variable .
+
+    WHILE           reduce using rule 23 (stm -> variable .)
+    RETURN          reduce using rule 23 (stm -> variable .)
+    IF              reduce using rule 23 (stm -> variable .)
+    FOR             reduce using rule 23 (stm -> variable .)
+    INT             reduce using rule 23 (stm -> variable .)
+    STRING          reduce using rule 23 (stm -> variable .)
+    BOOL            reduce using rule 23 (stm -> variable .)
+    FLOAT           reduce using rule 23 (stm -> variable .)
+    DECIMAL         reduce using rule 23 (stm -> variable .)
+    DOUBLE          reduce using rule 23 (stm -> variable .)
+    VOID            reduce using rule 23 (stm -> variable .)
+    TRUE            reduce using rule 23 (stm -> variable .)
+    FALSE           reduce using rule 23 (stm -> variable .)
+    LITERALSTRING   reduce using rule 23 (stm -> variable .)
+    ID              reduce using rule 23 (stm -> variable .)
+    NUMBERINT       reduce using rule 23 (stm -> variable .)
+    NUMBERFLOATALL  reduce using rule 23 (stm -> variable .)
+    NUMBERFLOAT     reduce using rule 23 (stm -> variable .)
+    NUMBERDECIMAL   reduce using rule 23 (stm -> variable .)
+    NUMBERDOUBLE    reduce using rule 23 (stm -> variable .)
+    LPAREN          reduce using rule 23 (stm -> variable .)
+    RCHAV           reduce using rule 23 (stm -> variable .)
+
+
+state 33
+
+    (26) stm -> FOR . LPAREN optexp PV optexp PV optexp RPAREN body
+
+    LPAREN          shift and go to state 70
+
+
+state 34
+
+    (36) exp1 -> exp2 .
+    (37) exp2 -> exp2 . LCOR exp3
+
+    PV              reduce using rule 36 (exp1 -> exp2 .)
+    ATRIBUICAO      reduce using rule 36 (exp1 -> exp2 .)
+    RPAREN          reduce using rule 36 (exp1 -> exp2 .)
+    RCOL            reduce using rule 36 (exp1 -> exp2 .)
+    COMMA           reduce using rule 36 (exp1 -> exp2 .)
+    RCHAV           reduce using rule 36 (exp1 -> exp2 .)
+    LCOR            shift and go to state 71
+
+
+state 35
+
+    (38) exp2 -> exp3 .
+    (39) exp3 -> exp3 . LCAND exp4
+
+    LCOR            reduce using rule 38 (exp2 -> exp3 .)
+    PV              reduce using rule 38 (exp2 -> exp3 .)
+    ATRIBUICAO      reduce using rule 38 (exp2 -> exp3 .)
+    RPAREN          reduce using rule 38 (exp2 -> exp3 .)
+    RCOL            reduce using rule 38 (exp2 -> exp3 .)
+    COMMA           reduce using rule 38 (exp2 -> exp3 .)
+    RCHAV           reduce using rule 38 (exp2 -> exp3 .)
+    LCAND           shift and go to state 72
+
+
+state 36
+
+    (40) exp3 -> exp4 .
+    (41) exp4 -> exp4 . OR exp5
+
+    LCAND           reduce using rule 40 (exp3 -> exp4 .)
+    LCOR            reduce using rule 40 (exp3 -> exp4 .)
+    PV              reduce using rule 40 (exp3 -> exp4 .)
+    ATRIBUICAO      reduce using rule 40 (exp3 -> exp4 .)
+    RPAREN          reduce using rule 40 (exp3 -> exp4 .)
+    RCOL            reduce using rule 40 (exp3 -> exp4 .)
+    COMMA           reduce using rule 40 (exp3 -> exp4 .)
+    RCHAV           reduce using rule 40 (exp3 -> exp4 .)
+    OR              shift and go to state 73
+
+
+state 37
+
+    (42) exp4 -> exp5 .
+    (43) exp5 -> exp5 . EXOR exp6
+
+    OR              reduce using rule 42 (exp4 -> exp5 .)
+    LCAND           reduce using rule 42 (exp4 -> exp5 .)
+    LCOR            reduce using rule 42 (exp4 -> exp5 .)
+    PV              reduce using rule 42 (exp4 -> exp5 .)
+    ATRIBUICAO      reduce using rule 42 (exp4 -> exp5 .)
+    RPAREN          reduce using rule 42 (exp4 -> exp5 .)
+    RCOL            reduce using rule 42 (exp4 -> exp5 .)
+    COMMA           reduce using rule 42 (exp4 -> exp5 .)
+    RCHAV           reduce using rule 42 (exp4 -> exp5 .)
+    EXOR            shift and go to state 74
+
+
+state 38
+
+    (44) exp5 -> exp6 .
+    (45) exp6 -> exp6 . LAND exp7
+
+    EXOR            reduce using rule 44 (exp5 -> exp6 .)
+    OR              reduce using rule 44 (exp5 -> exp6 .)
+    LCAND           reduce using rule 44 (exp5 -> exp6 .)
+    LCOR            reduce using rule 44 (exp5 -> exp6 .)
+    PV              reduce using rule 44 (exp5 -> exp6 .)
+    ATRIBUICAO      reduce using rule 44 (exp5 -> exp6 .)
+    RPAREN          reduce using rule 44 (exp5 -> exp6 .)
+    RCOL            reduce using rule 44 (exp5 -> exp6 .)
+    COMMA           reduce using rule 44 (exp5 -> exp6 .)
+    RCHAV           reduce using rule 44 (exp5 -> exp6 .)
+    LAND            shift and go to state 75
+
+
+state 39
+
+    (46) exp6 -> exp7 .
+    (47) exp7 -> exp7 . IGUAL exp8
+    (48) exp7 -> exp7 . DIFERENTE exp8
+
+    LAND            reduce using rule 46 (exp6 -> exp7 .)
+    EXOR            reduce using rule 46 (exp6 -> exp7 .)
+    OR              reduce using rule 46 (exp6 -> exp7 .)
+    LCAND           reduce using rule 46 (exp6 -> exp7 .)
+    LCOR            reduce using rule 46 (exp6 -> exp7 .)
+    PV              reduce using rule 46 (exp6 -> exp7 .)
+    ATRIBUICAO      reduce using rule 46 (exp6 -> exp7 .)
+    RPAREN          reduce using rule 46 (exp6 -> exp7 .)
+    RCOL            reduce using rule 46 (exp6 -> exp7 .)
+    COMMA           reduce using rule 46 (exp6 -> exp7 .)
+    RCHAV           reduce using rule 46 (exp6 -> exp7 .)
+    IGUAL           shift and go to state 76
+    DIFERENTE       shift and go to state 77
+
+
+state 40
+
+    (49) exp7 -> exp8 .
+    (50) exp8 -> exp8 . MENOR exp9
+    (51) exp8 -> exp8 . MENOR_IGUAL exp9
+    (52) exp8 -> exp8 . MAIOR exp9
+    (53) exp8 -> exp8 . MAIOR_IGUAL exp9
+
+    IGUAL           reduce using rule 49 (exp7 -> exp8 .)
+    DIFERENTE       reduce using rule 49 (exp7 -> exp8 .)
+    LAND            reduce using rule 49 (exp7 -> exp8 .)
+    EXOR            reduce using rule 49 (exp7 -> exp8 .)
+    OR              reduce using rule 49 (exp7 -> exp8 .)
+    LCAND           reduce using rule 49 (exp7 -> exp8 .)
+    LCOR            reduce using rule 49 (exp7 -> exp8 .)
+    PV              reduce using rule 49 (exp7 -> exp8 .)
+    ATRIBUICAO      reduce using rule 49 (exp7 -> exp8 .)
+    RPAREN          reduce using rule 49 (exp7 -> exp8 .)
+    RCOL            reduce using rule 49 (exp7 -> exp8 .)
+    COMMA           reduce using rule 49 (exp7 -> exp8 .)
+    RCHAV           reduce using rule 49 (exp7 -> exp8 .)
+    MENOR           shift and go to state 78
+    MENOR_IGUAL     shift and go to state 79
+    MAIOR           shift and go to state 80
+    MAIOR_IGUAL     shift and go to state 81
+
+
+state 41
+
+    (54) exp8 -> exp9 .
+    (55) exp9 -> exp9 . SOMA exp10
+
+    MENOR           reduce using rule 54 (exp8 -> exp9 .)
+    MENOR_IGUAL     reduce using rule 54 (exp8 -> exp9 .)
+    MAIOR           reduce using rule 54 (exp8 -> exp9 .)
+    MAIOR_IGUAL     reduce using rule 54 (exp8 -> exp9 .)
+    IGUAL           reduce using rule 54 (exp8 -> exp9 .)
+    DIFERENTE       reduce using rule 54 (exp8 -> exp9 .)
+    LAND            reduce using rule 54 (exp8 -> exp9 .)
+    EXOR            reduce using rule 54 (exp8 -> exp9 .)
+    OR              reduce using rule 54 (exp8 -> exp9 .)
+    LCAND           reduce using rule 54 (exp8 -> exp9 .)
+    LCOR            reduce using rule 54 (exp8 -> exp9 .)
+    PV              reduce using rule 54 (exp8 -> exp9 .)
+    ATRIBUICAO      reduce using rule 54 (exp8 -> exp9 .)
+    RPAREN          reduce using rule 54 (exp8 -> exp9 .)
+    RCOL            reduce using rule 54 (exp8 -> exp9 .)
+    COMMA           reduce using rule 54 (exp8 -> exp9 .)
+    RCHAV           reduce using rule 54 (exp8 -> exp9 .)
+    SOMA            shift and go to state 82
+
+
+state 42
+
+    (56) exp9 -> exp10 .
+    (57) exp10 -> exp10 . SUBTRACAO exp12
+
+    SOMA            reduce using rule 56 (exp9 -> exp10 .)
+    MENOR           reduce using rule 56 (exp9 -> exp10 .)
+    MENOR_IGUAL     reduce using rule 56 (exp9 -> exp10 .)
+    MAIOR           reduce using rule 56 (exp9 -> exp10 .)
+    MAIOR_IGUAL     reduce using rule 56 (exp9 -> exp10 .)
+    IGUAL           reduce using rule 56 (exp9 -> exp10 .)
+    DIFERENTE       reduce using rule 56 (exp9 -> exp10 .)
+    LAND            reduce using rule 56 (exp9 -> exp10 .)
+    EXOR            reduce using rule 56 (exp9 -> exp10 .)
+    OR              reduce using rule 56 (exp9 -> exp10 .)
+    LCAND           reduce using rule 56 (exp9 -> exp10 .)
+    LCOR            reduce using rule 56 (exp9 -> exp10 .)
+    PV              reduce using rule 56 (exp9 -> exp10 .)
+    ATRIBUICAO      reduce using rule 56 (exp9 -> exp10 .)
+    RPAREN          reduce using rule 56 (exp9 -> exp10 .)
+    RCOL            reduce using rule 56 (exp9 -> exp10 .)
+    COMMA           reduce using rule 56 (exp9 -> exp10 .)
+    RCHAV           reduce using rule 56 (exp9 -> exp10 .)
+    SUBTRACAO       shift and go to state 83
+
+
+state 43
+
+    (58) exp10 -> exp12 .
+    (59) exp12 -> exp12 . VEZES exp13
+
+    SUBTRACAO       reduce using rule 58 (exp10 -> exp12 .)
+    SOMA            reduce using rule 58 (exp10 -> exp12 .)
+    MENOR           reduce using rule 58 (exp10 -> exp12 .)
+    MENOR_IGUAL     reduce using rule 58 (exp10 -> exp12 .)
+    MAIOR           reduce using rule 58 (exp10 -> exp12 .)
+    MAIOR_IGUAL     reduce using rule 58 (exp10 -> exp12 .)
+    IGUAL           reduce using rule 58 (exp10 -> exp12 .)
+    DIFERENTE       reduce using rule 58 (exp10 -> exp12 .)
+    LAND            reduce using rule 58 (exp10 -> exp12 .)
+    EXOR            reduce using rule 58 (exp10 -> exp12 .)
+    OR              reduce using rule 58 (exp10 -> exp12 .)
+    LCAND           reduce using rule 58 (exp10 -> exp12 .)
+    LCOR            reduce using rule 58 (exp10 -> exp12 .)
+    PV              reduce using rule 58 (exp10 -> exp12 .)
+    ATRIBUICAO      reduce using rule 58 (exp10 -> exp12 .)
+    RPAREN          reduce using rule 58 (exp10 -> exp12 .)
+    RCOL            reduce using rule 58 (exp10 -> exp12 .)
+    COMMA           reduce using rule 58 (exp10 -> exp12 .)
+    RCHAV           reduce using rule 58 (exp10 -> exp12 .)
+    VEZES           shift and go to state 84
+
+
+state 44
+
+    (60) exp12 -> exp13 .
+    (61) exp13 -> exp13 . DIVISAO exp14
+
+    VEZES           reduce using rule 60 (exp12 -> exp13 .)
+    SUBTRACAO       reduce using rule 60 (exp12 -> exp13 .)
+    SOMA            reduce using rule 60 (exp12 -> exp13 .)
+    MENOR           reduce using rule 60 (exp12 -> exp13 .)
+    MENOR_IGUAL     reduce using rule 60 (exp12 -> exp13 .)
+    MAIOR           reduce using rule 60 (exp12 -> exp13 .)
+    MAIOR_IGUAL     reduce using rule 60 (exp12 -> exp13 .)
+    IGUAL           reduce using rule 60 (exp12 -> exp13 .)
+    DIFERENTE       reduce using rule 60 (exp12 -> exp13 .)
+    LAND            reduce using rule 60 (exp12 -> exp13 .)
+    EXOR            reduce using rule 60 (exp12 -> exp13 .)
+    OR              reduce using rule 60 (exp12 -> exp13 .)
+    LCAND           reduce using rule 60 (exp12 -> exp13 .)
+    LCOR            reduce using rule 60 (exp12 -> exp13 .)
+    PV              reduce using rule 60 (exp12 -> exp13 .)
+    ATRIBUICAO      reduce using rule 60 (exp12 -> exp13 .)
+    RPAREN          reduce using rule 60 (exp12 -> exp13 .)
+    RCOL            reduce using rule 60 (exp12 -> exp13 .)
+    COMMA           reduce using rule 60 (exp12 -> exp13 .)
+    RCHAV           reduce using rule 60 (exp12 -> exp13 .)
+    DIVISAO         shift and go to state 85
+
+
+state 45
+
+    (62) exp13 -> exp14 .
+    (63) exp14 -> exp14 . INCREMENTO
+    (64) exp14 -> exp14 . DECREMENTO
+
+    DIVISAO         reduce using rule 62 (exp13 -> exp14 .)
+    VEZES           reduce using rule 62 (exp13 -> exp14 .)
+    SUBTRACAO       reduce using rule 62 (exp13 -> exp14 .)
+    SOMA            reduce using rule 62 (exp13 -> exp14 .)
+    MENOR           reduce using rule 62 (exp13 -> exp14 .)
+    MENOR_IGUAL     reduce using rule 62 (exp13 -> exp14 .)
+    MAIOR           reduce using rule 62 (exp13 -> exp14 .)
+    MAIOR_IGUAL     reduce using rule 62 (exp13 -> exp14 .)
+    IGUAL           reduce using rule 62 (exp13 -> exp14 .)
+    DIFERENTE       reduce using rule 62 (exp13 -> exp14 .)
+    LAND            reduce using rule 62 (exp13 -> exp14 .)
+    EXOR            reduce using rule 62 (exp13 -> exp14 .)
+    OR              reduce using rule 62 (exp13 -> exp14 .)
+    LCAND           reduce using rule 62 (exp13 -> exp14 .)
+    LCOR            reduce using rule 62 (exp13 -> exp14 .)
+    PV              reduce using rule 62 (exp13 -> exp14 .)
+    ATRIBUICAO      reduce using rule 62 (exp13 -> exp14 .)
+    RPAREN          reduce using rule 62 (exp13 -> exp14 .)
+    RCOL            reduce using rule 62 (exp13 -> exp14 .)
+    COMMA           reduce using rule 62 (exp13 -> exp14 .)
+    RCHAV           reduce using rule 62 (exp13 -> exp14 .)
+    INCREMENTO      shift and go to state 86
+    DECREMENTO      shift and go to state 87
+
+
+state 46
+
+    (65) exp14 -> exp15 .
+
+    INCREMENTO      reduce using rule 65 (exp14 -> exp15 .)
+    DECREMENTO      reduce using rule 65 (exp14 -> exp15 .)
+    DIVISAO         reduce using rule 65 (exp14 -> exp15 .)
+    VEZES           reduce using rule 65 (exp14 -> exp15 .)
+    SUBTRACAO       reduce using rule 65 (exp14 -> exp15 .)
+    SOMA            reduce using rule 65 (exp14 -> exp15 .)
+    MENOR           reduce using rule 65 (exp14 -> exp15 .)
+    MENOR_IGUAL     reduce using rule 65 (exp14 -> exp15 .)
+    MAIOR           reduce using rule 65 (exp14 -> exp15 .)
+    MAIOR_IGUAL     reduce using rule 65 (exp14 -> exp15 .)
+    IGUAL           reduce using rule 65 (exp14 -> exp15 .)
+    DIFERENTE       reduce using rule 65 (exp14 -> exp15 .)
+    LAND            reduce using rule 65 (exp14 -> exp15 .)
+    EXOR            reduce using rule 65 (exp14 -> exp15 .)
+    OR              reduce using rule 65 (exp14 -> exp15 .)
+    LCAND           reduce using rule 65 (exp14 -> exp15 .)
+    LCOR            reduce using rule 65 (exp14 -> exp15 .)
+    PV              reduce using rule 65 (exp14 -> exp15 .)
+    ATRIBUICAO      reduce using rule 65 (exp14 -> exp15 .)
+    RPAREN          reduce using rule 65 (exp14 -> exp15 .)
+    RCOL            reduce using rule 65 (exp14 -> exp15 .)
+    COMMA           reduce using rule 65 (exp14 -> exp15 .)
+    RCHAV           reduce using rule 65 (exp14 -> exp15 .)
+
+
+state 47
+
+    (66) exp15 -> TRUE .
+
+    INCREMENTO      reduce using rule 66 (exp15 -> TRUE .)
+    DECREMENTO      reduce using rule 66 (exp15 -> TRUE .)
+    DIVISAO         reduce using rule 66 (exp15 -> TRUE .)
+    VEZES           reduce using rule 66 (exp15 -> TRUE .)
+    SUBTRACAO       reduce using rule 66 (exp15 -> TRUE .)
+    SOMA            reduce using rule 66 (exp15 -> TRUE .)
+    MENOR           reduce using rule 66 (exp15 -> TRUE .)
+    MENOR_IGUAL     reduce using rule 66 (exp15 -> TRUE .)
+    MAIOR           reduce using rule 66 (exp15 -> TRUE .)
+    MAIOR_IGUAL     reduce using rule 66 (exp15 -> TRUE .)
+    IGUAL           reduce using rule 66 (exp15 -> TRUE .)
+    DIFERENTE       reduce using rule 66 (exp15 -> TRUE .)
+    LAND            reduce using rule 66 (exp15 -> TRUE .)
+    EXOR            reduce using rule 66 (exp15 -> TRUE .)
+    OR              reduce using rule 66 (exp15 -> TRUE .)
+    LCAND           reduce using rule 66 (exp15 -> TRUE .)
+    LCOR            reduce using rule 66 (exp15 -> TRUE .)
+    PV              reduce using rule 66 (exp15 -> TRUE .)
+    ATRIBUICAO      reduce using rule 66 (exp15 -> TRUE .)
+    RPAREN          reduce using rule 66 (exp15 -> TRUE .)
+    RCOL            reduce using rule 66 (exp15 -> TRUE .)
+    COMMA           reduce using rule 66 (exp15 -> TRUE .)
+    RCHAV           reduce using rule 66 (exp15 -> TRUE .)
+
+
+state 48
+
+    (67) exp15 -> FALSE .
+
+    INCREMENTO      reduce using rule 67 (exp15 -> FALSE .)
+    DECREMENTO      reduce using rule 67 (exp15 -> FALSE .)
+    DIVISAO         reduce using rule 67 (exp15 -> FALSE .)
+    VEZES           reduce using rule 67 (exp15 -> FALSE .)
+    SUBTRACAO       reduce using rule 67 (exp15 -> FALSE .)
+    SOMA            reduce using rule 67 (exp15 -> FALSE .)
+    MENOR           reduce using rule 67 (exp15 -> FALSE .)
+    MENOR_IGUAL     reduce using rule 67 (exp15 -> FALSE .)
+    MAIOR           reduce using rule 67 (exp15 -> FALSE .)
+    MAIOR_IGUAL     reduce using rule 67 (exp15 -> FALSE .)
+    IGUAL           reduce using rule 67 (exp15 -> FALSE .)
+    DIFERENTE       reduce using rule 67 (exp15 -> FALSE .)
+    LAND            reduce using rule 67 (exp15 -> FALSE .)
+    EXOR            reduce using rule 67 (exp15 -> FALSE .)
+    OR              reduce using rule 67 (exp15 -> FALSE .)
+    LCAND           reduce using rule 67 (exp15 -> FALSE .)
+    LCOR            reduce using rule 67 (exp15 -> FALSE .)
+    PV              reduce using rule 67 (exp15 -> FALSE .)
+    ATRIBUICAO      reduce using rule 67 (exp15 -> FALSE .)
+    RPAREN          reduce using rule 67 (exp15 -> FALSE .)
+    RCOL            reduce using rule 67 (exp15 -> FALSE .)
+    COMMA           reduce using rule 67 (exp15 -> FALSE .)
+    RCHAV           reduce using rule 67 (exp15 -> FALSE .)
+
+
+state 49
+
+    (68) exp15 -> LITERALSTRING .
+
+    INCREMENTO      reduce using rule 68 (exp15 -> LITERALSTRING .)
+    DECREMENTO      reduce using rule 68 (exp15 -> LITERALSTRING .)
+    DIVISAO         reduce using rule 68 (exp15 -> LITERALSTRING .)
+    VEZES           reduce using rule 68 (exp15 -> LITERALSTRING .)
+    SUBTRACAO       reduce using rule 68 (exp15 -> LITERALSTRING .)
+    SOMA            reduce using rule 68 (exp15 -> LITERALSTRING .)
+    MENOR           reduce using rule 68 (exp15 -> LITERALSTRING .)
+    MENOR_IGUAL     reduce using rule 68 (exp15 -> LITERALSTRING .)
+    MAIOR           reduce using rule 68 (exp15 -> LITERALSTRING .)
+    MAIOR_IGUAL     reduce using rule 68 (exp15 -> LITERALSTRING .)
+    IGUAL           reduce using rule 68 (exp15 -> LITERALSTRING .)
+    DIFERENTE       reduce using rule 68 (exp15 -> LITERALSTRING .)
+    LAND            reduce using rule 68 (exp15 -> LITERALSTRING .)
+    EXOR            reduce using rule 68 (exp15 -> LITERALSTRING .)
+    OR              reduce using rule 68 (exp15 -> LITERALSTRING .)
+    LCAND           reduce using rule 68 (exp15 -> LITERALSTRING .)
+    LCOR            reduce using rule 68 (exp15 -> LITERALSTRING .)
+    PV              reduce using rule 68 (exp15 -> LITERALSTRING .)
+    ATRIBUICAO      reduce using rule 68 (exp15 -> LITERALSTRING .)
+    RPAREN          reduce using rule 68 (exp15 -> LITERALSTRING .)
+    RCOL            reduce using rule 68 (exp15 -> LITERALSTRING .)
+    COMMA           reduce using rule 68 (exp15 -> LITERALSTRING .)
+    RCHAV           reduce using rule 68 (exp15 -> LITERALSTRING .)
+
+
+state 50
+
+    (69) exp15 -> ID .
+    (77) call -> ID . LPAREN params RPAREN
+    (78) call -> ID . LPAREN RPAREN
+
+    INCREMENTO      reduce using rule 69 (exp15 -> ID .)
+    DECREMENTO      reduce using rule 69 (exp15 -> ID .)
+    DIVISAO         reduce using rule 69 (exp15 -> ID .)
+    VEZES           reduce using rule 69 (exp15 -> ID .)
+    SUBTRACAO       reduce using rule 69 (exp15 -> ID .)
+    SOMA            reduce using rule 69 (exp15 -> ID .)
+    MENOR           reduce using rule 69 (exp15 -> ID .)
+    MENOR_IGUAL     reduce using rule 69 (exp15 -> ID .)
+    MAIOR           reduce using rule 69 (exp15 -> ID .)
+    MAIOR_IGUAL     reduce using rule 69 (exp15 -> ID .)
+    IGUAL           reduce using rule 69 (exp15 -> ID .)
+    DIFERENTE       reduce using rule 69 (exp15 -> ID .)
+    LAND            reduce using rule 69 (exp15 -> ID .)
+    EXOR            reduce using rule 69 (exp15 -> ID .)
+    OR              reduce using rule 69 (exp15 -> ID .)
+    LCAND           reduce using rule 69 (exp15 -> ID .)
+    LCOR            reduce using rule 69 (exp15 -> ID .)
+    PV              reduce using rule 69 (exp15 -> ID .)
+    ATRIBUICAO      reduce using rule 69 (exp15 -> ID .)
+    RPAREN          reduce using rule 69 (exp15 -> ID .)
+    RCOL            reduce using rule 69 (exp15 -> ID .)
+    COMMA           reduce using rule 69 (exp15 -> ID .)
+    RCHAV           reduce using rule 69 (exp15 -> ID .)
+    LPAREN          shift and go to state 88
+
+
+state 51
+
+    (70) exp15 -> call .
+
+    INCREMENTO      reduce using rule 70 (exp15 -> call .)
+    DECREMENTO      reduce using rule 70 (exp15 -> call .)
+    DIVISAO         reduce using rule 70 (exp15 -> call .)
+    VEZES           reduce using rule 70 (exp15 -> call .)
+    SUBTRACAO       reduce using rule 70 (exp15 -> call .)
+    SOMA            reduce using rule 70 (exp15 -> call .)
+    MENOR           reduce using rule 70 (exp15 -> call .)
+    MENOR_IGUAL     reduce using rule 70 (exp15 -> call .)
+    MAIOR           reduce using rule 70 (exp15 -> call .)
+    MAIOR_IGUAL     reduce using rule 70 (exp15 -> call .)
+    IGUAL           reduce using rule 70 (exp15 -> call .)
+    DIFERENTE       reduce using rule 70 (exp15 -> call .)
+    LAND            reduce using rule 70 (exp15 -> call .)
+    EXOR            reduce using rule 70 (exp15 -> call .)
+    OR              reduce using rule 70 (exp15 -> call .)
+    LCAND           reduce using rule 70 (exp15 -> call .)
+    LCOR            reduce using rule 70 (exp15 -> call .)
+    PV              reduce using rule 70 (exp15 -> call .)
+    ATRIBUICAO      reduce using rule 70 (exp15 -> call .)
+    RPAREN          reduce using rule 70 (exp15 -> call .)
+    RCOL            reduce using rule 70 (exp15 -> call .)
+    COMMA           reduce using rule 70 (exp15 -> call .)
+    RCHAV           reduce using rule 70 (exp15 -> call .)
+
+
+state 52
+
+    (71) exp15 -> NUMBERINT .
+
+    INCREMENTO      reduce using rule 71 (exp15 -> NUMBERINT .)
+    DECREMENTO      reduce using rule 71 (exp15 -> NUMBERINT .)
+    DIVISAO         reduce using rule 71 (exp15 -> NUMBERINT .)
+    VEZES           reduce using rule 71 (exp15 -> NUMBERINT .)
+    SUBTRACAO       reduce using rule 71 (exp15 -> NUMBERINT .)
+    SOMA            reduce using rule 71 (exp15 -> NUMBERINT .)
+    MENOR           reduce using rule 71 (exp15 -> NUMBERINT .)
+    MENOR_IGUAL     reduce using rule 71 (exp15 -> NUMBERINT .)
+    MAIOR           reduce using rule 71 (exp15 -> NUMBERINT .)
+    MAIOR_IGUAL     reduce using rule 71 (exp15 -> NUMBERINT .)
+    IGUAL           reduce using rule 71 (exp15 -> NUMBERINT .)
+    DIFERENTE       reduce using rule 71 (exp15 -> NUMBERINT .)
+    LAND            reduce using rule 71 (exp15 -> NUMBERINT .)
+    EXOR            reduce using rule 71 (exp15 -> NUMBERINT .)
+    OR              reduce using rule 71 (exp15 -> NUMBERINT .)
+    LCAND           reduce using rule 71 (exp15 -> NUMBERINT .)
+    LCOR            reduce using rule 71 (exp15 -> NUMBERINT .)
+    PV              reduce using rule 71 (exp15 -> NUMBERINT .)
+    ATRIBUICAO      reduce using rule 71 (exp15 -> NUMBERINT .)
+    RPAREN          reduce using rule 71 (exp15 -> NUMBERINT .)
+    RCOL            reduce using rule 71 (exp15 -> NUMBERINT .)
+    COMMA           reduce using rule 71 (exp15 -> NUMBERINT .)
+    RCHAV           reduce using rule 71 (exp15 -> NUMBERINT .)
+
+
+state 53
+
+    (72) exp15 -> NUMBERFLOATALL .
+
+    INCREMENTO      reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    DECREMENTO      reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    DIVISAO         reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    VEZES           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    SUBTRACAO       reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    SOMA            reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    MENOR           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    MENOR_IGUAL     reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    MAIOR           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    MAIOR_IGUAL     reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    IGUAL           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    DIFERENTE       reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    LAND            reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    EXOR            reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    OR              reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    LCAND           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    LCOR            reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    PV              reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    ATRIBUICAO      reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    RPAREN          reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    RCOL            reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    COMMA           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+    RCHAV           reduce using rule 72 (exp15 -> NUMBERFLOATALL .)
+
+
+state 54
+
+    (73) exp15 -> NUMBERFLOAT .
+
+    INCREMENTO      reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    DECREMENTO      reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    DIVISAO         reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    VEZES           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    SUBTRACAO       reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    SOMA            reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    MENOR           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    MENOR_IGUAL     reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    MAIOR           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    MAIOR_IGUAL     reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    IGUAL           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    DIFERENTE       reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    LAND            reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    EXOR            reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    OR              reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    LCAND           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    LCOR            reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    PV              reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    ATRIBUICAO      reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    RPAREN          reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    RCOL            reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    COMMA           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+    RCHAV           reduce using rule 73 (exp15 -> NUMBERFLOAT .)
+
+
+state 55
+
+    (74) exp15 -> NUMBERDECIMAL .
+
+    INCREMENTO      reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    DECREMENTO      reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    DIVISAO         reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    VEZES           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    SUBTRACAO       reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    SOMA            reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    MENOR           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    MENOR_IGUAL     reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    MAIOR           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    MAIOR_IGUAL     reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    IGUAL           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    DIFERENTE       reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    LAND            reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    EXOR            reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    OR              reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    LCAND           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    LCOR            reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    PV              reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    ATRIBUICAO      reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    RPAREN          reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    RCOL            reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    COMMA           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+    RCHAV           reduce using rule 74 (exp15 -> NUMBERDECIMAL .)
+
+
+state 56
+
+    (75) exp15 -> NUMBERDOUBLE .
+
+    INCREMENTO      reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    DECREMENTO      reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    DIVISAO         reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    VEZES           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    SUBTRACAO       reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    SOMA            reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    MENOR           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    MENOR_IGUAL     reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    MAIOR           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    MAIOR_IGUAL     reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    IGUAL           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    DIFERENTE       reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    LAND            reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    EXOR            reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    OR              reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    LCAND           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    LCOR            reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    PV              reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    ATRIBUICAO      reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    RPAREN          reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    RCOL            reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    COMMA           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+    RCHAV           reduce using rule 75 (exp15 -> NUMBERDOUBLE .)
+
+
+state 57
+
+    (27) variable -> type assign PV .
+
+    INT             reduce using rule 27 (variable -> type assign PV .)
+    STRING          reduce using rule 27 (variable -> type assign PV .)
+    BOOL            reduce using rule 27 (variable -> type assign PV .)
+    FLOAT           reduce using rule 27 (variable -> type assign PV .)
+    DECIMAL         reduce using rule 27 (variable -> type assign PV .)
+    DOUBLE          reduce using rule 27 (variable -> type assign PV .)
+    VOID            reduce using rule 27 (variable -> type assign PV .)
+    PUBLIC          reduce using rule 27 (variable -> type assign PV .)
+    STATIC          reduce using rule 27 (variable -> type assign PV .)
+    $end            reduce using rule 27 (variable -> type assign PV .)
+    WHILE           reduce using rule 27 (variable -> type assign PV .)
+    RETURN          reduce using rule 27 (variable -> type assign PV .)
+    IF              reduce using rule 27 (variable -> type assign PV .)
+    FOR             reduce using rule 27 (variable -> type assign PV .)
+    TRUE            reduce using rule 27 (variable -> type assign PV .)
+    FALSE           reduce using rule 27 (variable -> type assign PV .)
+    LITERALSTRING   reduce using rule 27 (variable -> type assign PV .)
+    ID              reduce using rule 27 (variable -> type assign PV .)
+    NUMBERINT       reduce using rule 27 (variable -> type assign PV .)
+    NUMBERFLOATALL  reduce using rule 27 (variable -> type assign PV .)
+    NUMBERFLOAT     reduce using rule 27 (variable -> type assign PV .)
+    NUMBERDECIMAL   reduce using rule 27 (variable -> type assign PV .)
+    NUMBERDOUBLE    reduce using rule 27 (variable -> type assign PV .)
+    LPAREN          reduce using rule 27 (variable -> type assign PV .)
+    RCHAV           reduce using rule 27 (variable -> type assign PV .)
+
+
+state 58
+
+    (81) assign -> ID IGUAL . exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 89
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 59
+
+    (82) assign -> ID LCOL . exp1 RCOL IGUAL exp1
+    (83) assign -> ID LCOL . RCOL IGUAL LCHAV params RCHAV exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    RCOL            shift and go to state 91
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 90
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 60
+
+    (8) signature -> modifier ID LPAREN . sigparams RPAREN
+    (9) signature -> modifier ID LPAREN . RPAREN
+    (12) sigparams -> . ID ID
+    (13) sigparams -> . ID ID COMMA sigparams
+
+    RPAREN          shift and go to state 94
+    ID              shift and go to state 92
+
+    sigparams                      shift and go to state 93
+
+state 61
+
+    (10) signature -> modifier type ID . LPAREN sigparams RPAREN
+    (11) signature -> modifier type ID . LPAREN RPAREN
+
+    LPAREN          shift and go to state 95
+
+
+state 62
+
+    (14) body -> LCHAV stms RCHAV .
+
+    INT             reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    STRING          reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    BOOL            reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    FLOAT           reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    DECIMAL         reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    DOUBLE          reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    VOID            reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    PUBLIC          reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    STATIC          reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    $end            reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    WHILE           reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    RETURN          reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    IF              reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    FOR             reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    TRUE            reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    FALSE           reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    LITERALSTRING   reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    ID              reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    NUMBERINT       reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    NUMBERFLOATALL  reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    NUMBERFLOAT     reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    NUMBERDECIMAL   reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    NUMBERDOUBLE    reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    LPAREN          reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    RCHAV           reduce using rule 14 (body -> LCHAV stms RCHAV .)
+    ELSE            reduce using rule 14 (body -> LCHAV stms RCHAV .)
+
+
+state 63
+
+    (17) stms -> stm stms .
+
+    RCHAV           reduce using rule 17 (stms -> stm stms .)
+
+
+state 64
+
+    (18) stm -> exp1 PV .
+
+    WHILE           reduce using rule 18 (stm -> exp1 PV .)
+    RETURN          reduce using rule 18 (stm -> exp1 PV .)
+    IF              reduce using rule 18 (stm -> exp1 PV .)
+    FOR             reduce using rule 18 (stm -> exp1 PV .)
+    INT             reduce using rule 18 (stm -> exp1 PV .)
+    STRING          reduce using rule 18 (stm -> exp1 PV .)
+    BOOL            reduce using rule 18 (stm -> exp1 PV .)
+    FLOAT           reduce using rule 18 (stm -> exp1 PV .)
+    DECIMAL         reduce using rule 18 (stm -> exp1 PV .)
+    DOUBLE          reduce using rule 18 (stm -> exp1 PV .)
+    VOID            reduce using rule 18 (stm -> exp1 PV .)
+    TRUE            reduce using rule 18 (stm -> exp1 PV .)
+    FALSE           reduce using rule 18 (stm -> exp1 PV .)
+    LITERALSTRING   reduce using rule 18 (stm -> exp1 PV .)
+    ID              reduce using rule 18 (stm -> exp1 PV .)
+    NUMBERINT       reduce using rule 18 (stm -> exp1 PV .)
+    NUMBERFLOATALL  reduce using rule 18 (stm -> exp1 PV .)
+    NUMBERFLOAT     reduce using rule 18 (stm -> exp1 PV .)
+    NUMBERDECIMAL   reduce using rule 18 (stm -> exp1 PV .)
+    NUMBERDOUBLE    reduce using rule 18 (stm -> exp1 PV .)
+    LPAREN          reduce using rule 18 (stm -> exp1 PV .)
+    RCHAV           reduce using rule 18 (stm -> exp1 PV .)
+
+
+state 65
+
+    (35) exp1 -> exp1 ATRIBUICAO . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp2                           shift and go to state 96
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 66
+
+    (19) stm -> WHILE LPAREN . exp1 RPAREN body
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 97
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 67
+
+    (76) exp15 -> LPAREN exp1 . RPAREN
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    RPAREN          shift and go to state 98
+    ATRIBUICAO      shift and go to state 65
+
+
+state 68
+
+    (20) stm -> RETURN exp1 . PV
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    PV              shift and go to state 99
+    ATRIBUICAO      shift and go to state 65
+
+
+state 69
+
+    (21) stm -> IF LPAREN . exp1 RPAREN body ELSE body
+    (22) stm -> IF LPAREN . exp1 RPAREN body
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 100
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 70
+
+    (26) stm -> FOR LPAREN . optexp PV optexp PV optexp RPAREN body
+    (24) optexp -> . exp1
+    (25) optexp -> .
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    PV              reduce using rule 25 (optexp -> .)
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    optexp                         shift and go to state 101
+    exp1                           shift and go to state 102
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 71
+
+    (37) exp2 -> exp2 LCOR . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp3                           shift and go to state 103
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 72
+
+    (39) exp3 -> exp3 LCAND . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp4                           shift and go to state 104
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 73
+
+    (41) exp4 -> exp4 OR . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp5                           shift and go to state 105
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 74
+
+    (43) exp5 -> exp5 EXOR . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp6                           shift and go to state 106
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 75
+
+    (45) exp6 -> exp6 LAND . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp7                           shift and go to state 107
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 76
+
+    (47) exp7 -> exp7 IGUAL . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp8                           shift and go to state 108
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 77
+
+    (48) exp7 -> exp7 DIFERENTE . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp8                           shift and go to state 109
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 78
+
+    (50) exp8 -> exp8 MENOR . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp9                           shift and go to state 110
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 79
+
+    (51) exp8 -> exp8 MENOR_IGUAL . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp9                           shift and go to state 111
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 80
+
+    (52) exp8 -> exp8 MAIOR . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp9                           shift and go to state 112
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 81
+
+    (53) exp8 -> exp8 MAIOR_IGUAL . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp9                           shift and go to state 113
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 82
+
+    (55) exp9 -> exp9 SOMA . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp10                          shift and go to state 114
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 83
+
+    (57) exp10 -> exp10 SUBTRACAO . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp12                          shift and go to state 115
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 84
+
+    (59) exp12 -> exp12 VEZES . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp13                          shift and go to state 116
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 85
+
+    (61) exp13 -> exp13 DIVISAO . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp14                          shift and go to state 117
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 86
+
+    (63) exp14 -> exp14 INCREMENTO .
+
+    INCREMENTO      reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    DECREMENTO      reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    DIVISAO         reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    VEZES           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    SUBTRACAO       reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    SOMA            reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    MENOR           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    MENOR_IGUAL     reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    MAIOR           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    MAIOR_IGUAL     reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    IGUAL           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    DIFERENTE       reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    LAND            reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    EXOR            reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    OR              reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    LCAND           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    LCOR            reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    PV              reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    ATRIBUICAO      reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    RPAREN          reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    RCOL            reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    COMMA           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+    RCHAV           reduce using rule 63 (exp14 -> exp14 INCREMENTO .)
+
+
+state 87
+
+    (64) exp14 -> exp14 DECREMENTO .
+
+    INCREMENTO      reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    DECREMENTO      reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    DIVISAO         reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    VEZES           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    SUBTRACAO       reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    SOMA            reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    MENOR           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    MENOR_IGUAL     reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    MAIOR           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    MAIOR_IGUAL     reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    IGUAL           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    DIFERENTE       reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    LAND            reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    EXOR            reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    OR              reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    LCAND           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    LCOR            reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    PV              reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    ATRIBUICAO      reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    RPAREN          reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    RCOL            reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    COMMA           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+    RCHAV           reduce using rule 64 (exp14 -> exp14 DECREMENTO .)
+
+
+state 88
+
+    (77) call -> ID LPAREN . params RPAREN
+    (78) call -> ID LPAREN . RPAREN
+    (79) params -> . exp1 COMMA params
+    (80) params -> . exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    RPAREN          shift and go to state 119
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    params                         shift and go to state 118
+    exp1                           shift and go to state 120
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 89
+
+    (81) assign -> ID IGUAL exp1 .
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    PV              reduce using rule 81 (assign -> ID IGUAL exp1 .)
+    ATRIBUICAO      shift and go to state 65
+
+
+state 90
+
+    (82) assign -> ID LCOL exp1 . RCOL IGUAL exp1
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    RCOL            shift and go to state 121
+    ATRIBUICAO      shift and go to state 65
+
+
+state 91
+
+    (83) assign -> ID LCOL RCOL . IGUAL LCHAV params RCHAV exp1
+
+    IGUAL           shift and go to state 122
+
+
+state 92
+
+    (12) sigparams -> ID . ID
+    (13) sigparams -> ID . ID COMMA sigparams
+
+    ID              shift and go to state 123
+
+
+state 93
+
+    (8) signature -> modifier ID LPAREN sigparams . RPAREN
+
+    RPAREN          shift and go to state 124
+
+
+state 94
+
+    (9) signature -> modifier ID LPAREN RPAREN .
+
+    LCHAV           reduce using rule 9 (signature -> modifier ID LPAREN RPAREN .)
+
+
+state 95
+
+    (10) signature -> modifier type ID LPAREN . sigparams RPAREN
+    (11) signature -> modifier type ID LPAREN . RPAREN
+    (12) sigparams -> . ID ID
+    (13) sigparams -> . ID ID COMMA sigparams
+
+    RPAREN          shift and go to state 126
+    ID              shift and go to state 92
+
+    sigparams                      shift and go to state 125
+
+state 96
+
+    (35) exp1 -> exp1 ATRIBUICAO exp2 .
+    (37) exp2 -> exp2 . LCOR exp3
+
+    PV              reduce using rule 35 (exp1 -> exp1 ATRIBUICAO exp2 .)
+    ATRIBUICAO      reduce using rule 35 (exp1 -> exp1 ATRIBUICAO exp2 .)
+    RPAREN          reduce using rule 35 (exp1 -> exp1 ATRIBUICAO exp2 .)
+    RCOL            reduce using rule 35 (exp1 -> exp1 ATRIBUICAO exp2 .)
+    COMMA           reduce using rule 35 (exp1 -> exp1 ATRIBUICAO exp2 .)
+    RCHAV           reduce using rule 35 (exp1 -> exp1 ATRIBUICAO exp2 .)
+    LCOR            shift and go to state 71
+
+
+state 97
+
+    (19) stm -> WHILE LPAREN exp1 . RPAREN body
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    RPAREN          shift and go to state 127
+    ATRIBUICAO      shift and go to state 65
+
+
+state 98
+
+    (76) exp15 -> LPAREN exp1 RPAREN .
+
+    INCREMENTO      reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    DECREMENTO      reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    DIVISAO         reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    VEZES           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    SUBTRACAO       reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    SOMA            reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    MENOR           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    MENOR_IGUAL     reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    MAIOR           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    MAIOR_IGUAL     reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    IGUAL           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    DIFERENTE       reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    LAND            reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    EXOR            reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    OR              reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    LCAND           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    LCOR            reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    PV              reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    ATRIBUICAO      reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    RPAREN          reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    RCOL            reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    COMMA           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+    RCHAV           reduce using rule 76 (exp15 -> LPAREN exp1 RPAREN .)
+
+
+state 99
+
+    (20) stm -> RETURN exp1 PV .
+
+    WHILE           reduce using rule 20 (stm -> RETURN exp1 PV .)
+    RETURN          reduce using rule 20 (stm -> RETURN exp1 PV .)
+    IF              reduce using rule 20 (stm -> RETURN exp1 PV .)
+    FOR             reduce using rule 20 (stm -> RETURN exp1 PV .)
+    INT             reduce using rule 20 (stm -> RETURN exp1 PV .)
+    STRING          reduce using rule 20 (stm -> RETURN exp1 PV .)
+    BOOL            reduce using rule 20 (stm -> RETURN exp1 PV .)
+    FLOAT           reduce using rule 20 (stm -> RETURN exp1 PV .)
+    DECIMAL         reduce using rule 20 (stm -> RETURN exp1 PV .)
+    DOUBLE          reduce using rule 20 (stm -> RETURN exp1 PV .)
+    VOID            reduce using rule 20 (stm -> RETURN exp1 PV .)
+    TRUE            reduce using rule 20 (stm -> RETURN exp1 PV .)
+    FALSE           reduce using rule 20 (stm -> RETURN exp1 PV .)
+    LITERALSTRING   reduce using rule 20 (stm -> RETURN exp1 PV .)
+    ID              reduce using rule 20 (stm -> RETURN exp1 PV .)
+    NUMBERINT       reduce using rule 20 (stm -> RETURN exp1 PV .)
+    NUMBERFLOATALL  reduce using rule 20 (stm -> RETURN exp1 PV .)
+    NUMBERFLOAT     reduce using rule 20 (stm -> RETURN exp1 PV .)
+    NUMBERDECIMAL   reduce using rule 20 (stm -> RETURN exp1 PV .)
+    NUMBERDOUBLE    reduce using rule 20 (stm -> RETURN exp1 PV .)
+    LPAREN          reduce using rule 20 (stm -> RETURN exp1 PV .)
+    RCHAV           reduce using rule 20 (stm -> RETURN exp1 PV .)
+
+
+state 100
+
+    (21) stm -> IF LPAREN exp1 . RPAREN body ELSE body
+    (22) stm -> IF LPAREN exp1 . RPAREN body
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    RPAREN          shift and go to state 128
+    ATRIBUICAO      shift and go to state 65
+
+
+state 101
+
+    (26) stm -> FOR LPAREN optexp . PV optexp PV optexp RPAREN body
+
+    PV              shift and go to state 129
+
+
+state 102
+
+    (24) optexp -> exp1 .
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    PV              reduce using rule 24 (optexp -> exp1 .)
+    RPAREN          reduce using rule 24 (optexp -> exp1 .)
+    ATRIBUICAO      shift and go to state 65
+
+
+state 103
+
+    (37) exp2 -> exp2 LCOR exp3 .
+    (39) exp3 -> exp3 . LCAND exp4
+
+    LCOR            reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    PV              reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    ATRIBUICAO      reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    RPAREN          reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    RCOL            reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    COMMA           reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    RCHAV           reduce using rule 37 (exp2 -> exp2 LCOR exp3 .)
+    LCAND           shift and go to state 72
+
+
+state 104
+
+    (39) exp3 -> exp3 LCAND exp4 .
+    (41) exp4 -> exp4 . OR exp5
+
+    LCAND           reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    LCOR            reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    PV              reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    ATRIBUICAO      reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    RPAREN          reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    RCOL            reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    COMMA           reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    RCHAV           reduce using rule 39 (exp3 -> exp3 LCAND exp4 .)
+    OR              shift and go to state 73
+
+
+state 105
+
+    (41) exp4 -> exp4 OR exp5 .
+    (43) exp5 -> exp5 . EXOR exp6
+
+    OR              reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    LCAND           reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    LCOR            reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    PV              reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    ATRIBUICAO      reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    RPAREN          reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    RCOL            reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    COMMA           reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    RCHAV           reduce using rule 41 (exp4 -> exp4 OR exp5 .)
+    EXOR            shift and go to state 74
+
+
+state 106
+
+    (43) exp5 -> exp5 EXOR exp6 .
+    (45) exp6 -> exp6 . LAND exp7
+
+    EXOR            reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    OR              reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    LCAND           reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    LCOR            reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    PV              reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    ATRIBUICAO      reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    RPAREN          reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    RCOL            reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    COMMA           reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    RCHAV           reduce using rule 43 (exp5 -> exp5 EXOR exp6 .)
+    LAND            shift and go to state 75
+
+
+state 107
+
+    (45) exp6 -> exp6 LAND exp7 .
+    (47) exp7 -> exp7 . IGUAL exp8
+    (48) exp7 -> exp7 . DIFERENTE exp8
+
+    LAND            reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    EXOR            reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    OR              reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    LCAND           reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    LCOR            reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    PV              reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    ATRIBUICAO      reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    RPAREN          reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    RCOL            reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    COMMA           reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    RCHAV           reduce using rule 45 (exp6 -> exp6 LAND exp7 .)
+    IGUAL           shift and go to state 76
+    DIFERENTE       shift and go to state 77
+
+
+state 108
+
+    (47) exp7 -> exp7 IGUAL exp8 .
+    (50) exp8 -> exp8 . MENOR exp9
+    (51) exp8 -> exp8 . MENOR_IGUAL exp9
+    (52) exp8 -> exp8 . MAIOR exp9
+    (53) exp8 -> exp8 . MAIOR_IGUAL exp9
+
+    IGUAL           reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    DIFERENTE       reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    LAND            reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    EXOR            reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    OR              reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    LCAND           reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    LCOR            reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    PV              reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    ATRIBUICAO      reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    RPAREN          reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    RCOL            reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    COMMA           reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    RCHAV           reduce using rule 47 (exp7 -> exp7 IGUAL exp8 .)
+    MENOR           shift and go to state 78
+    MENOR_IGUAL     shift and go to state 79
+    MAIOR           shift and go to state 80
+    MAIOR_IGUAL     shift and go to state 81
+
+
+state 109
+
+    (48) exp7 -> exp7 DIFERENTE exp8 .
+    (50) exp8 -> exp8 . MENOR exp9
+    (51) exp8 -> exp8 . MENOR_IGUAL exp9
+    (52) exp8 -> exp8 . MAIOR exp9
+    (53) exp8 -> exp8 . MAIOR_IGUAL exp9
+
+    IGUAL           reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    DIFERENTE       reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    LAND            reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    EXOR            reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    OR              reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    LCAND           reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    LCOR            reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    PV              reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    ATRIBUICAO      reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    RPAREN          reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    RCOL            reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    COMMA           reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    RCHAV           reduce using rule 48 (exp7 -> exp7 DIFERENTE exp8 .)
+    MENOR           shift and go to state 78
+    MENOR_IGUAL     shift and go to state 79
+    MAIOR           shift and go to state 80
+    MAIOR_IGUAL     shift and go to state 81
+
+
+state 110
+
+    (50) exp8 -> exp8 MENOR exp9 .
+    (55) exp9 -> exp9 . SOMA exp10
+
+    MENOR           reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    MENOR_IGUAL     reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    MAIOR           reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    MAIOR_IGUAL     reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    IGUAL           reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    DIFERENTE       reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    LAND            reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    EXOR            reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    OR              reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    LCAND           reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    LCOR            reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    PV              reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    ATRIBUICAO      reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    RPAREN          reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    RCOL            reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    COMMA           reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    RCHAV           reduce using rule 50 (exp8 -> exp8 MENOR exp9 .)
+    SOMA            shift and go to state 82
+
+
+state 111
+
+    (51) exp8 -> exp8 MENOR_IGUAL exp9 .
+    (55) exp9 -> exp9 . SOMA exp10
+
+    MENOR           reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    MENOR_IGUAL     reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    MAIOR           reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    MAIOR_IGUAL     reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    IGUAL           reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    DIFERENTE       reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    LAND            reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    EXOR            reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    OR              reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    LCAND           reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    LCOR            reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    PV              reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    ATRIBUICAO      reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    RPAREN          reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    RCOL            reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    COMMA           reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    RCHAV           reduce using rule 51 (exp8 -> exp8 MENOR_IGUAL exp9 .)
+    SOMA            shift and go to state 82
+
+
+state 112
+
+    (52) exp8 -> exp8 MAIOR exp9 .
+    (55) exp9 -> exp9 . SOMA exp10
+
+    MENOR           reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    MENOR_IGUAL     reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    MAIOR           reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    MAIOR_IGUAL     reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    IGUAL           reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    DIFERENTE       reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    LAND            reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    EXOR            reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    OR              reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    LCAND           reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    LCOR            reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    PV              reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    ATRIBUICAO      reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    RPAREN          reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    RCOL            reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    COMMA           reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    RCHAV           reduce using rule 52 (exp8 -> exp8 MAIOR exp9 .)
+    SOMA            shift and go to state 82
+
+
+state 113
+
+    (53) exp8 -> exp8 MAIOR_IGUAL exp9 .
+    (55) exp9 -> exp9 . SOMA exp10
+
+    MENOR           reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    MENOR_IGUAL     reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    MAIOR           reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    MAIOR_IGUAL     reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    IGUAL           reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    DIFERENTE       reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    LAND            reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    EXOR            reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    OR              reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    LCAND           reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    LCOR            reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    PV              reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    ATRIBUICAO      reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    RPAREN          reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    RCOL            reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    COMMA           reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    RCHAV           reduce using rule 53 (exp8 -> exp8 MAIOR_IGUAL exp9 .)
+    SOMA            shift and go to state 82
+
+
+state 114
+
+    (55) exp9 -> exp9 SOMA exp10 .
+    (57) exp10 -> exp10 . SUBTRACAO exp12
+
+    SOMA            reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    MENOR           reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    MENOR_IGUAL     reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    MAIOR           reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    MAIOR_IGUAL     reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    IGUAL           reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    DIFERENTE       reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    LAND            reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    EXOR            reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    OR              reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    LCAND           reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    LCOR            reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    PV              reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    ATRIBUICAO      reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    RPAREN          reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    RCOL            reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    COMMA           reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    RCHAV           reduce using rule 55 (exp9 -> exp9 SOMA exp10 .)
+    SUBTRACAO       shift and go to state 83
+
+
+state 115
+
+    (57) exp10 -> exp10 SUBTRACAO exp12 .
+    (59) exp12 -> exp12 . VEZES exp13
+
+    SUBTRACAO       reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    SOMA            reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    MENOR           reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    MENOR_IGUAL     reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    MAIOR           reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    MAIOR_IGUAL     reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    IGUAL           reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    DIFERENTE       reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    LAND            reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    EXOR            reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    OR              reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    LCAND           reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    LCOR            reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    PV              reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    ATRIBUICAO      reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    RPAREN          reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    RCOL            reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    COMMA           reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    RCHAV           reduce using rule 57 (exp10 -> exp10 SUBTRACAO exp12 .)
+    VEZES           shift and go to state 84
+
+
+state 116
+
+    (59) exp12 -> exp12 VEZES exp13 .
+    (61) exp13 -> exp13 . DIVISAO exp14
+
+    VEZES           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    SUBTRACAO       reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    SOMA            reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    MENOR           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    MENOR_IGUAL     reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    MAIOR           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    MAIOR_IGUAL     reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    IGUAL           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    DIFERENTE       reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    LAND            reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    EXOR            reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    OR              reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    LCAND           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    LCOR            reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    PV              reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    ATRIBUICAO      reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    RPAREN          reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    RCOL            reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    COMMA           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    RCHAV           reduce using rule 59 (exp12 -> exp12 VEZES exp13 .)
+    DIVISAO         shift and go to state 85
+
+
+state 117
+
+    (61) exp13 -> exp13 DIVISAO exp14 .
+    (63) exp14 -> exp14 . INCREMENTO
+    (64) exp14 -> exp14 . DECREMENTO
+
+    DIVISAO         reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    VEZES           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    SUBTRACAO       reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    SOMA            reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    MENOR           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    MENOR_IGUAL     reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    MAIOR           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    MAIOR_IGUAL     reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    IGUAL           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    DIFERENTE       reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    LAND            reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    EXOR            reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    OR              reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    LCAND           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    LCOR            reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    PV              reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    ATRIBUICAO      reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    RPAREN          reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    RCOL            reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    COMMA           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    RCHAV           reduce using rule 61 (exp13 -> exp13 DIVISAO exp14 .)
+    INCREMENTO      shift and go to state 86
+    DECREMENTO      shift and go to state 87
+
+
+state 118
+
+    (77) call -> ID LPAREN params . RPAREN
+
+    RPAREN          shift and go to state 130
+
+
+state 119
+
+    (78) call -> ID LPAREN RPAREN .
+
+    INCREMENTO      reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    DECREMENTO      reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    DIVISAO         reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    VEZES           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    SUBTRACAO       reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    SOMA            reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    MENOR           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    MENOR_IGUAL     reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    MAIOR           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    MAIOR_IGUAL     reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    IGUAL           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    DIFERENTE       reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    LAND            reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    EXOR            reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    OR              reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    LCAND           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    LCOR            reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    PV              reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    ATRIBUICAO      reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    RPAREN          reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    RCOL            reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    COMMA           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+    RCHAV           reduce using rule 78 (call -> ID LPAREN RPAREN .)
+
+
+state 120
+
+    (79) params -> exp1 . COMMA params
+    (80) params -> exp1 .
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    COMMA           shift and go to state 131
+    RPAREN          reduce using rule 80 (params -> exp1 .)
+    RCHAV           reduce using rule 80 (params -> exp1 .)
+    ATRIBUICAO      shift and go to state 65
+
+
+state 121
+
+    (82) assign -> ID LCOL exp1 RCOL . IGUAL exp1
+
+    IGUAL           shift and go to state 132
+
+
+state 122
+
+    (83) assign -> ID LCOL RCOL IGUAL . LCHAV params RCHAV exp1
+
+    LCHAV           shift and go to state 133
+
+
+state 123
+
+    (12) sigparams -> ID ID .
+    (13) sigparams -> ID ID . COMMA sigparams
+
+    RPAREN          reduce using rule 12 (sigparams -> ID ID .)
+    COMMA           shift and go to state 134
+
+
+state 124
+
+    (8) signature -> modifier ID LPAREN sigparams RPAREN .
+
+    LCHAV           reduce using rule 8 (signature -> modifier ID LPAREN sigparams RPAREN .)
+
+
+state 125
+
+    (10) signature -> modifier type ID LPAREN sigparams . RPAREN
+
+    RPAREN          shift and go to state 135
+
+
+state 126
+
+    (11) signature -> modifier type ID LPAREN RPAREN .
+
+    LCHAV           reduce using rule 11 (signature -> modifier type ID LPAREN RPAREN .)
+
+
+state 127
+
+    (19) stm -> WHILE LPAREN exp1 RPAREN . body
+    (14) body -> . LCHAV stms RCHAV
+    (15) body -> . LCHAV RCHAV
+
+    LCHAV           shift and go to state 19
+
+    body                           shift and go to state 136
+
+state 128
+
+    (21) stm -> IF LPAREN exp1 RPAREN . body ELSE body
+    (22) stm -> IF LPAREN exp1 RPAREN . body
+    (14) body -> . LCHAV stms RCHAV
+    (15) body -> . LCHAV RCHAV
+
+    LCHAV           shift and go to state 19
+
+    body                           shift and go to state 137
+
+state 129
+
+    (26) stm -> FOR LPAREN optexp PV . optexp PV optexp RPAREN body
+    (24) optexp -> . exp1
+    (25) optexp -> .
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    PV              reduce using rule 25 (optexp -> .)
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    optexp                         shift and go to state 138
+    exp1                           shift and go to state 102
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 130
+
+    (77) call -> ID LPAREN params RPAREN .
+
+    INCREMENTO      reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    DECREMENTO      reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    DIVISAO         reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    VEZES           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    SUBTRACAO       reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    SOMA            reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    MENOR           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    MENOR_IGUAL     reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    MAIOR           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    MAIOR_IGUAL     reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    IGUAL           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    DIFERENTE       reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    LAND            reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    EXOR            reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    OR              reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    LCAND           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    LCOR            reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    PV              reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    ATRIBUICAO      reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    RPAREN          reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    RCOL            reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    COMMA           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+    RCHAV           reduce using rule 77 (call -> ID LPAREN params RPAREN .)
+
+
+state 131
+
+    (79) params -> exp1 COMMA . params
+    (79) params -> . exp1 COMMA params
+    (80) params -> . exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 120
+    params                         shift and go to state 139
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 132
+
+    (82) assign -> ID LCOL exp1 RCOL IGUAL . exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 140
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 133
+
+    (83) assign -> ID LCOL RCOL IGUAL LCHAV . params RCHAV exp1
+    (79) params -> . exp1 COMMA params
+    (80) params -> . exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    params                         shift and go to state 141
+    exp1                           shift and go to state 120
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 134
+
+    (13) sigparams -> ID ID COMMA . sigparams
+    (12) sigparams -> . ID ID
+    (13) sigparams -> . ID ID COMMA sigparams
+
+    ID              shift and go to state 92
+
+    sigparams                      shift and go to state 142
+
+state 135
+
+    (10) signature -> modifier type ID LPAREN sigparams RPAREN .
+
+    LCHAV           reduce using rule 10 (signature -> modifier type ID LPAREN sigparams RPAREN .)
+
+
+state 136
+
+    (19) stm -> WHILE LPAREN exp1 RPAREN body .
+
+    WHILE           reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    RETURN          reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    IF              reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    FOR             reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    INT             reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    STRING          reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    BOOL            reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    FLOAT           reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    DECIMAL         reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    DOUBLE          reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    VOID            reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    TRUE            reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    FALSE           reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    LITERALSTRING   reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    ID              reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    NUMBERINT       reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    NUMBERFLOATALL  reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    NUMBERFLOAT     reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    NUMBERDECIMAL   reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    NUMBERDOUBLE    reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    LPAREN          reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+    RCHAV           reduce using rule 19 (stm -> WHILE LPAREN exp1 RPAREN body .)
+
+
+state 137
+
+    (21) stm -> IF LPAREN exp1 RPAREN body . ELSE body
+    (22) stm -> IF LPAREN exp1 RPAREN body .
+
+    ELSE            shift and go to state 143
+    WHILE           reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    RETURN          reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    IF              reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    FOR             reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    INT             reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    STRING          reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    BOOL            reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    FLOAT           reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    DECIMAL         reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    DOUBLE          reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    VOID            reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    TRUE            reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    FALSE           reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    LITERALSTRING   reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    ID              reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    NUMBERINT       reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    NUMBERFLOATALL  reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    NUMBERFLOAT     reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    NUMBERDECIMAL   reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    NUMBERDOUBLE    reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    LPAREN          reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+    RCHAV           reduce using rule 22 (stm -> IF LPAREN exp1 RPAREN body .)
+
+
+state 138
+
+    (26) stm -> FOR LPAREN optexp PV optexp . PV optexp RPAREN body
+
+    PV              shift and go to state 144
+
+
+state 139
+
+    (79) params -> exp1 COMMA params .
+
+    RPAREN          reduce using rule 79 (params -> exp1 COMMA params .)
+    RCHAV           reduce using rule 79 (params -> exp1 COMMA params .)
+
+
+state 140
+
+    (82) assign -> ID LCOL exp1 RCOL IGUAL exp1 .
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    PV              reduce using rule 82 (assign -> ID LCOL exp1 RCOL IGUAL exp1 .)
+    ATRIBUICAO      shift and go to state 65
+
+
+state 141
+
+    (83) assign -> ID LCOL RCOL IGUAL LCHAV params . RCHAV exp1
+
+    RCHAV           shift and go to state 145
+
+
+state 142
+
+    (13) sigparams -> ID ID COMMA sigparams .
+
+    RPAREN          reduce using rule 13 (sigparams -> ID ID COMMA sigparams .)
+
+
+state 143
+
+    (21) stm -> IF LPAREN exp1 RPAREN body ELSE . body
+    (14) body -> . LCHAV stms RCHAV
+    (15) body -> . LCHAV RCHAV
+
+    LCHAV           shift and go to state 19
+
+    body                           shift and go to state 146
+
+state 144
+
+    (26) stm -> FOR LPAREN optexp PV optexp PV . optexp RPAREN body
+    (24) optexp -> . exp1
+    (25) optexp -> .
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    RPAREN          reduce using rule 25 (optexp -> .)
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    optexp                         shift and go to state 147
+    exp1                           shift and go to state 102
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 145
+
+    (83) assign -> ID LCOL RCOL IGUAL LCHAV params RCHAV . exp1
+    (35) exp1 -> . exp1 ATRIBUICAO exp2
+    (36) exp1 -> . exp2
+    (37) exp2 -> . exp2 LCOR exp3
+    (38) exp2 -> . exp3
+    (39) exp3 -> . exp3 LCAND exp4
+    (40) exp3 -> . exp4
+    (41) exp4 -> . exp4 OR exp5
+    (42) exp4 -> . exp5
+    (43) exp5 -> . exp5 EXOR exp6
+    (44) exp5 -> . exp6
+    (45) exp6 -> . exp6 LAND exp7
+    (46) exp6 -> . exp7
+    (47) exp7 -> . exp7 IGUAL exp8
+    (48) exp7 -> . exp7 DIFERENTE exp8
+    (49) exp7 -> . exp8
+    (50) exp8 -> . exp8 MENOR exp9
+    (51) exp8 -> . exp8 MENOR_IGUAL exp9
+    (52) exp8 -> . exp8 MAIOR exp9
+    (53) exp8 -> . exp8 MAIOR_IGUAL exp9
+    (54) exp8 -> . exp9
+    (55) exp9 -> . exp9 SOMA exp10
+    (56) exp9 -> . exp10
+    (57) exp10 -> . exp10 SUBTRACAO exp12
+    (58) exp10 -> . exp12
+    (59) exp12 -> . exp12 VEZES exp13
+    (60) exp12 -> . exp13
+    (61) exp13 -> . exp13 DIVISAO exp14
+    (62) exp13 -> . exp14
+    (63) exp14 -> . exp14 INCREMENTO
+    (64) exp14 -> . exp14 DECREMENTO
+    (65) exp14 -> . exp15
+    (66) exp15 -> . TRUE
+    (67) exp15 -> . FALSE
+    (68) exp15 -> . LITERALSTRING
+    (69) exp15 -> . ID
+    (70) exp15 -> . call
+    (71) exp15 -> . NUMBERINT
+    (72) exp15 -> . NUMBERFLOATALL
+    (73) exp15 -> . NUMBERFLOAT
+    (74) exp15 -> . NUMBERDECIMAL
+    (75) exp15 -> . NUMBERDOUBLE
+    (76) exp15 -> . LPAREN exp1 RPAREN
+    (77) call -> . ID LPAREN params RPAREN
+    (78) call -> . ID LPAREN RPAREN
+
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    LITERALSTRING   shift and go to state 49
+    ID              shift and go to state 50
+    NUMBERINT       shift and go to state 52
+    NUMBERFLOATALL  shift and go to state 53
+    NUMBERFLOAT     shift and go to state 54
+    NUMBERDECIMAL   shift and go to state 55
+    NUMBERDOUBLE    shift and go to state 56
+    LPAREN          shift and go to state 29
+
+    exp1                           shift and go to state 148
+    exp2                           shift and go to state 34
+    exp3                           shift and go to state 35
+    exp4                           shift and go to state 36
+    exp5                           shift and go to state 37
+    exp6                           shift and go to state 38
+    exp7                           shift and go to state 39
+    exp8                           shift and go to state 40
+    exp9                           shift and go to state 41
+    exp10                          shift and go to state 42
+    exp12                          shift and go to state 43
+    exp13                          shift and go to state 44
+    exp14                          shift and go to state 45
+    exp15                          shift and go to state 46
+    call                           shift and go to state 51
+
+state 146
+
+    (21) stm -> IF LPAREN exp1 RPAREN body ELSE body .
+
+    WHILE           reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    RETURN          reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    IF              reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    FOR             reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    INT             reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    STRING          reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    BOOL            reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    FLOAT           reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    DECIMAL         reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    DOUBLE          reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    VOID            reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    TRUE            reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    FALSE           reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    LITERALSTRING   reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    ID              reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    NUMBERINT       reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    NUMBERFLOATALL  reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    NUMBERFLOAT     reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    NUMBERDECIMAL   reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    NUMBERDOUBLE    reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    LPAREN          reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+    RCHAV           reduce using rule 21 (stm -> IF LPAREN exp1 RPAREN body ELSE body .)
+
+
+state 147
+
+    (26) stm -> FOR LPAREN optexp PV optexp PV optexp . RPAREN body
+
+    RPAREN          shift and go to state 149
+
+
+state 148
+
+    (83) assign -> ID LCOL RCOL IGUAL LCHAV params RCHAV exp1 .
+    (35) exp1 -> exp1 . ATRIBUICAO exp2
+
+    PV              reduce using rule 83 (assign -> ID LCOL RCOL IGUAL LCHAV params RCHAV exp1 .)
+    ATRIBUICAO      shift and go to state 65
+
+
+state 149
+
+    (26) stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN . body
+    (14) body -> . LCHAV stms RCHAV
+    (15) body -> . LCHAV RCHAV
+
+    LCHAV           shift and go to state 19
+
+    body                           shift and go to state 150
+
+state 150
+
+    (26) stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .
+
+    WHILE           reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    RETURN          reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    IF              reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    FOR             reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    INT             reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    STRING          reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    BOOL            reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    FLOAT           reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    DECIMAL         reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    DOUBLE          reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    VOID            reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    TRUE            reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    FALSE           reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    LITERALSTRING   reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    ID              reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    NUMBERINT       reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    NUMBERFLOATALL  reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    NUMBERFLOAT     reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    NUMBERDECIMAL   reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    NUMBERDOUBLE    reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    LPAREN          reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+    RCHAV           reduce using rule 26 (stm -> FOR LPAREN optexp PV optexp PV optexp RPAREN body .)
+

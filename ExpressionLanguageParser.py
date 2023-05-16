@@ -107,11 +107,12 @@ def p_stm_variable(p):
 
 
 def p_optexp(p):
-  '''optexp : exp1
-  |
-  '''
+  '''optexp : exp1 '''
   p[0] = sa.StmOptExp(p[1])
 
+def p_optexp_none(p):
+  '''optexp : '''
+  p[0] = None
 
 def p_stm_for(p):
   '''stm : FOR LPAREN optexp PV optexp PV optexp RPAREN body '''

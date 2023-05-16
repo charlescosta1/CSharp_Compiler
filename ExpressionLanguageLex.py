@@ -105,7 +105,6 @@ tokens = [
   'LAND_IGUAL',
   'EXOR',
   'LAND',
-  'INOR',
   'COMPLEMENTO',
   'LCAND',
   'LCOR',
@@ -154,7 +153,7 @@ t_SOBRA_IGUAL = r'%='
 t_LAND_IGUAL = r'&='
 t_EXOR = r'\^'
 t_LAND = r'\&'
-t_INOR = r'\|'
+t_OR = r'\|'
 t_COMPLEMENTO = r'\~'
 t_LCAND = r'\&&'
 t_LCOR = r'\|\|'

@@ -458,7 +458,7 @@ class ExpMenor(exp):
     return visitor.visitMenor(self)
 
 
-class ExpMenoIgual(exp):
+class ExpMenorIgual(exp):
 
   def __init__(self, exp1, exp2):
     self.exp1 = exp1
