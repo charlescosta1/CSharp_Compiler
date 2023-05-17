@@ -296,4 +296,3 @@ class Visitor(AbstractVisitor):
 
   def visitAssignId(self, AssignId):
     AssignId.id.accept(self)
-
